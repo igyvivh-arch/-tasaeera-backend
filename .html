@@ -1,0 +1,2183 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="عرض منتجات الهدايا والإكسسوارات مع إمكانية تخصيص صناديق الهدايا وإرسال الطلبات مباشرة عبر واتساب." />
+  <title>الحرمين للعطور والهدايا</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --brand-light: #F8C8DC;
+      --brand: #E75480;
+      --brand-dark: #C23F6A;
+      --gold: #D4AF37;
+      --gold-light: #F5E6A3;
+      --cream: #FFF5F8;
+      --soft-gray: #F5F5F5;
+      --wa: #25D366;
+    }
+    html { direction: rtl; scroll-behavior: smooth; font-family: 'Cairo','Tajawal',sans-serif; }
+    body { font-family: 'Cairo','Tajawal',sans-serif; background:#fff; color:#1a1a1a; }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #f5f5f5; }
+    ::-webkit-scrollbar-thumb { background: var(--brand-light); border-radius: 2px; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+    input, select, textarea { font-family: inherit; }
+
+    /* ===== LAYOUT ===== */
+    .max-w-7xl { max-width: 1280px; margin: 0 auto; }
+    .max-w-4xl { max-width: 896px; margin: 0 auto; }
+    .max-w-3xl { max-width: 768px; margin: 0 auto; }
+    .px-4 { padding-left: 1rem; padding-right: 1rem; }
+    .py-4 { padding: 1rem 0; }
+    .flex { display: flex; }
+    .flex-col { flex-direction: column; }
+    .grid { display: grid; }
+    .items-center { align-items: center; }
+    .justify-between { justify-content: space-between; }
+    .justify-center { justify-content: center; }
+    .gap-2 { gap: 0.5rem; }
+    .gap-3 { gap: 0.75rem; }
+    .gap-4 { gap: 1rem; }
+    .gap-5 { gap: 1.25rem; }
+    .gap-8 { gap: 2rem; }
+    .w-full { width: 100%; }
+    .hidden { display: none !important; }
+    .text-center { text-align: center; }
+    .relative { position: relative; }
+    .absolute { position: absolute; }
+    .fixed { position: fixed; }
+    .overflow-hidden { overflow: hidden; }
+    .rounded-full { border-radius: 9999px; }
+    .rounded-xl { border-radius: 0.75rem; }
+    .rounded-2xl { border-radius: 1rem; }
+    .rounded-3xl { border-radius: 1.5rem; }
+    .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); }
+    .shadow-md { box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06); }
+    .shadow-sm { box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05); }
+    .transition-all { transition: all 0.2s ease; }
+    .min-h-screen { min-height: 100vh; }
+    .sticky { position: sticky; }
+    .top-0 { top: 0; }
+    .z-50 { z-index: 50; }
+    .inset-0 { top:0;right:0;bottom:0;left:0; }
+    .cursor-pointer { cursor: pointer; }
+    .line-clamp-2 { display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden; }
+    .line-clamp-1 { display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden; }
+    .resize-none { resize: none; }
+
+    /* ===== NAVBAR ===== */
+    #navbar {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(4px);
+      border-bottom: 1px solid var(--brand-light);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .navbar-inner {
+      max-width: 1280px; margin: 0 auto;
+      padding: 0 1rem; height: 64px;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+    .logo-btn { display:flex;align-items:center;gap:0.5rem; cursor:pointer; }
+    .logo-icon { width:36px;height:36px;border-radius:9999px;background:var(--brand);display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(231,84,128,0.3); }
+    .logo-title { font-weight:900;color:var(--brand);font-size:1.1rem;line-height:1; }
+    .logo-sub { font-size:0.65rem;color:var(--gold);font-weight:700;letter-spacing:0.1em; }
+    .nav-links { display:flex;align-items:center;gap:0.25rem; }
+    .nav-link {
+      padding:0.5rem 0.75rem;border-radius:0.5rem;font-size:0.875rem;font-weight:600;
+      color:#4b5563;transition:all 0.15s ease;
+    }
+    .nav-link:hover { color:var(--brand);background:rgba(248,200,220,0.4); }
+    .nav-link.active { background:var(--brand-light);color:var(--brand); }
+    .nav-actions { display:flex;align-items:center;gap:0.5rem; }
+    .wishlist-btn {
+      position:relative;padding:0.5rem;border-radius:9999px;
+      color:var(--brand);transition:all 0.15s;
+    }
+    .wishlist-btn:hover { background:rgba(248,200,220,0.4); }
+    .wishlist-count {
+      position:absolute;top:-2px;left:-2px;
+      width:18px;height:18px;background:var(--brand);color:#fff;
+      font-size:10px;font-weight:700;border-radius:9999px;
+      display:flex;align-items:center;justify-content:center;
+    }
+    .wa-btn-nav {
+      display:flex;align-items:center;gap:0.375rem;
+      background:var(--wa);color:#fff;font-size:0.875rem;font-weight:700;
+      padding:0.5rem 0.75rem;border-radius:9999px;transition:all 0.15s;
+    }
+    .wa-btn-nav:hover { background:#1ebe5d; }
+    .hamburger {
+      padding:0.5rem;border-radius:0.5rem;transition:all 0.15s;display:none;
+    }
+    .hamburger:hover { background:rgba(248,200,220,0.4); }
+    .hamburger span { display:block;width:20px;height:2px;background:#1a1a1a;transition:all 0.2s;margin:4px 0; }
+    #mobile-menu {
+      display:none;background:#fff;border-top:1px solid var(--brand-light);
+      padding:0.75rem 1rem;
+    }
+    #mobile-menu .mob-link {
+      width:100%;text-align:right;padding:0.75rem 1rem;border-radius:0.75rem;
+      font-size:0.875rem;font-weight:600;color:#374151;transition:all 0.15s;display:block;
+    }
+    #mobile-menu .mob-link:hover { background:rgba(248,200,220,0.3); }
+    #mobile-menu .mob-link.active { background:var(--brand-light);color:var(--brand); }
+    #mobile-menu .wa-mob {
+      display:flex;align-items:center;justify-content:center;gap:0.5rem;
+      width:100%;background:var(--wa);color:#fff;font-weight:700;
+      padding:0.75rem;border-radius:0.75rem;margin-top:0.5rem;
+    }
+
+    /* ===== FOOTER ===== */
+    #footer { background:#111827;color:#fff; }
+    .footer-grid {
+      max-width:1280px;margin:0 auto;padding:3rem 1rem;
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:2rem;
+    }
+    .footer-title { font-weight:700;color:var(--gold);margin-bottom:1rem; }
+    .footer-text { color:#9ca3af;font-size:0.875rem;line-height:1.6; }
+    .footer-link { color:#9ca3af;font-size:0.875rem;display:block;margin-bottom:0.5rem;transition:color 0.15s; }
+    .footer-link:hover { color:var(--brand-light); }
+    .footer-social { width:36px;height:36px;border-radius:9999px;background:rgba(255,255,255,0.1);display:inline-flex;align-items:center;justify-content:center;margin-left:0.5rem;transition:all 0.15s; }
+    .footer-social:hover { background:var(--brand); }
+    .footer-bottom { border-top:1px solid rgba(255,255,255,0.1);text-align:center;padding:1rem;font-size:0.75rem;color:#4b5563; }
+
+    /* ===== PAGES ===== */
+    .page { display:none; }
+    .page.active { display:block; }
+
+    /* ===== HOME - HERO ===== */
+    .hero {
+      position:relative;overflow:hidden;min-height:90vh;
+      display:flex;align-items:center;
+      background:linear-gradient(135deg, var(--brand-light), var(--cream) 50%, #fff);
+    }
+    .hero::before {
+      content:'';position:absolute;inset:0;opacity:0.15;
+      background:radial-gradient(circle at 20% 80%, var(--brand) 0%, transparent 50%),
+                 radial-gradient(circle at 80% 20%, var(--gold) 0%, transparent 50%);
+    }
+    .hero-grid {
+      position:relative;max-width:1280px;margin:0 auto;padding:5rem 1rem;
+      display:grid;gap:3rem;align-items:center;
+    }
+    .hero-badge {
+      display:inline-flex;align-items:center;gap:0.5rem;
+      background:rgba(231,84,128,0.1);color:var(--brand);
+      padding:0.375rem 1rem;border-radius:9999px;font-size:0.875rem;font-weight:700;margin-bottom:1.5rem;
+    }
+    .hero-badge-dot { width:10px;height:10px;border-radius:9999px;background:var(--brand); }
+    .hero-h1 { font-size:clamp(2.2rem,5vw,3.75rem);font-weight:900;color:#111827;line-height:1.15;margin-bottom:1.5rem; }
+    .hero-h1 span { color:var(--brand);position:relative; }
+    .hero-p { color:#4b5563;font-size:1.1rem;line-height:1.7;margin-bottom:2rem;max-width:32rem; }
+    .hero-btns { display:flex;flex-wrap:wrap;gap:1rem; }
+    .btn-primary {
+      background:var(--brand);color:#fff;font-weight:700;
+      padding:0.875rem 2rem;border-radius:1rem;transition:all 0.2s;
+      box-shadow:0 8px 20px rgba(231,84,128,0.3);
+    }
+    .btn-primary:hover { background:var(--brand-dark);transform:translateY(-2px); }
+    .btn-wa {
+      display:flex;align-items:center;gap:0.5rem;
+      background:var(--wa);color:#fff;font-weight:700;
+      padding:0.875rem 2rem;border-radius:1rem;transition:all 0.2s;
+      box-shadow:0 8px 20px rgba(37,211,102,0.2);
+    }
+    .btn-wa:hover { background:#1ebe5d; }
+    .hero-stats { display:flex;gap:2rem;margin-top:2.5rem; }
+    .hero-stat-val { font-size:1.5rem;font-weight:900;color:var(--brand); }
+    .hero-stat-lbl { font-size:0.75rem;color:#6b7280;font-weight:500; }
+    .hero-img-wrap { position:relative;max-width:400px;margin:0 auto; }
+    .hero-main-img { width:100%;aspect-ratio:1;border-radius:1.5rem;overflow:hidden;box-shadow:0 25px 50px rgba(0,0,0,0.15); }
+    .hero-main-img img { width:100%;height:100%;object-fit:cover; }
+    .hero-thumb-1 {
+      position:absolute;bottom:-1rem;right:-1rem;width:144px;height:144px;
+      border-radius:1rem;overflow:hidden;border:4px solid #fff;box-shadow:0 8px 20px rgba(0,0,0,0.1);
+    }
+    .hero-thumb-2 {
+      position:absolute;top:-1rem;left:-1rem;width:112px;height:112px;
+      border-radius:1rem;overflow:hidden;border:4px solid #fff;box-shadow:0 8px 20px rgba(0,0,0,0.1);
+    }
+    .hero-thumb-1 img,.hero-thumb-2 img { width:100%;height:100%;object-fit:cover; }
+    .hero-badge-top {
+      position:absolute;top:1rem;right:1rem;
+      background:var(--gold);color:#fff;font-size:0.75rem;font-weight:900;
+      padding:0.375rem 0.75rem;border-radius:9999px;box-shadow:0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    /* ===== SECTIONS ===== */
+    .section-header { text-align:center;margin-bottom:2rem; }
+    .section-h2 { font-size:clamp(1.5rem,3vw,2rem);font-weight:900;color:#1f2937;margin-bottom:0.5rem; }
+    .section-p { color:#6b7280;font-size:0.875rem; }
+    .section-flex-header { display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:2rem; }
+    .see-all { color:var(--brand);font-weight:700;font-size:0.875rem;transition:all 0.15s; }
+    .see-all:hover { text-decoration:underline; }
+
+    /* ===== OCCASIONS STRIP ===== */
+    .occasions-strip { padding:3rem 0;background:#fff; }
+    .occasions-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:0.75rem; }
+    .occasion-card {
+      border:2px solid;border-radius:1rem;padding:0.75rem;
+      display:flex;flex-direction:column;align-items:center;gap:0.375rem;
+      transition:all 0.2s;cursor:pointer;
+    }
+    .occasion-card:hover { box-shadow:0 4px 15px rgba(0,0,0,0.1);transform:translateY(-2px); }
+    .occasion-icon { width:40px;height:40px;border-radius:9999px;background:rgba(255,255,255,0.8);color:var(--brand);font-weight:900;font-size:0.875rem;display:flex;align-items:center;justify-content:center; }
+    .occasion-lbl { font-size:0.75rem;font-weight:700;color:#374151;text-align:center;line-height:1.2; }
+
+    /* ===== PRODUCT CARD ===== */
+    .products-grid { display:grid;gap:1rem; }
+    .products-grid-2 { grid-template-columns:repeat(2,1fr); }
+    .products-grid-4 { grid-template-columns:repeat(4,1fr); }
+    .product-card {
+      background:#fff;border-radius:1rem;overflow:hidden;cursor:pointer;
+      border:1px solid rgba(248,200,220,0.4);
+      box-shadow:0 1px 3px rgba(0,0,0,0.05);
+      transition:all 0.3s ease;
+    }
+    .product-card:hover { box-shadow:0 20px 40px rgba(0,0,0,0.1);transform:translateY(-4px); }
+    .pc-img-wrap { position:relative;aspect-ratio:1;background:var(--soft-gray);overflow:hidden; }
+    .pc-img-wrap img { width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease; }
+    .product-card:hover .pc-img-wrap img { transform:scale(1.05); }
+    .pc-badges { position:absolute;top:0.75rem;right:0.75rem;display:flex;flex-direction:column;gap:0.25rem; }
+    .badge-new,.badge-out {
+      font-size:0.7rem;font-weight:700;padding:0.125rem 0.5rem;border-radius:9999px;color:#fff;
+    }
+    .badge-new { background:var(--brand); }
+    .badge-out { background:#6b7280; }
+    .pc-wish {
+      position:absolute;top:0.75rem;left:0.75rem;width:32px;height:32px;
+      background:rgba(255,255,255,0.9);border-radius:9999px;
+      display:flex;align-items:center;justify-content:center;
+      box-shadow:0 2px 8px rgba(0,0,0,0.1);transition:transform 0.2s;
+    }
+    .pc-wish:hover { transform:scale(1.1); }
+    .pc-info { padding:1rem; }
+    .pc-name { font-weight:700;color:#1f2937;font-size:0.875rem;line-height:1.35;margin-bottom:0.5rem; }
+    .pc-tags { display:flex;gap:0.5rem;margin-bottom:0.75rem;flex-wrap:wrap; }
+    .pc-tag { font-size:0.7rem;padding:0.125rem 0.5rem;border-radius:9999px; }
+    .pc-tag-cat { background:var(--soft-gray);color:#9ca3af; }
+    .pc-tag-occ { background:rgba(248,200,220,0.5);color:var(--brand); }
+    .pc-bottom { display:flex;align-items:center;justify-content:space-between; }
+    .pc-price { font-weight:900;color:var(--brand);font-size:1.1rem; }
+    .pc-price small { font-size:0.75rem;font-weight:600;color:#9ca3af; }
+    .pc-order {
+      display:flex;align-items:center;gap:0.25rem;font-size:0.75rem;font-weight:700;
+      padding:0.5rem 0.75rem;border-radius:0.75rem;transition:all 0.2s;
+    }
+    .pc-order.avail { background:var(--brand);color:#fff; }
+    .pc-order.avail:hover { background:var(--brand-dark); }
+    .pc-order.unavail { background:#e5e7eb;color:#9ca3af;cursor:not-allowed; }
+
+    /* ===== CTA BANNER ===== */
+    .cta-banner {
+      background:linear-gradient(135deg,var(--brand),var(--brand-dark));
+      color:#fff;padding:4rem 1rem;text-align:center;position:relative;overflow:hidden;
+    }
+    .cta-banner::before {
+      content:'';position:absolute;inset:0;opacity:0.08;
+      background:repeating-linear-gradient(45deg,#fff 0,#fff 1px,transparent 0,transparent 50%);
+      background-size:20px 20px;
+    }
+    .cta-icon { width:64px;height:64px;margin:0 auto 1rem;border-radius:1rem;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center; }
+    .cta-h2 { font-size:clamp(1.75rem,4vw,2.5rem);font-weight:900;margin-bottom:1rem; }
+    .cta-p { color:rgba(255,255,255,0.8);font-size:1.1rem;max-width:32rem;margin:0 auto 2rem; }
+    .cta-btn-white { background:#fff;color:var(--brand);font-weight:900;padding:1rem 2.5rem;border-radius:1rem;font-size:1.1rem;transition:all 0.2s; }
+    .cta-btn-white:hover { background:var(--brand-light); }
+
+    /* ===== TESTIMONIALS ===== */
+    .testimonials-grid { display:grid;gap:1.25rem; }
+    .testimonial-card { background:var(--soft-gray);border-radius:1rem;padding:1.25rem;border:1px solid rgba(248,200,220,0.3); }
+    .stars { color:var(--gold);font-size:0.875rem;margin-bottom:0.75rem; }
+    .testimonial-text { color:#374151;font-size:0.875rem;line-height:1.6;margin-bottom:1rem; }
+    .testimonial-author { display:flex;align-items:center;gap:0.75rem; }
+    .testimonial-avatar { width:40px;height:40px;border-radius:9999px;object-fit:cover; }
+    .testimonial-name { font-weight:700;color:#1f2937;font-size:0.875rem; }
+    .testimonial-occ { font-size:0.75rem;color:var(--brand); }
+
+    /* ===== GIFT FINDER ===== */
+    .gift-finder { background:var(--cream);padding:4rem 0; }
+    .gift-finder-box { background:#fff;border-radius:1.5rem;padding:2rem;box-shadow:0 4px 24px rgba(0,0,0,0.06);border:1px solid rgba(248,200,220,0.2); }
+    .gift-selects { display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem; }
+    .gift-label { display:block;font-size:0.875rem;font-weight:700;color:#374151;margin-bottom:0.5rem; }
+    .gift-select {
+      width:100%;border:2px solid #e5e7eb;border-radius:0.75rem;
+      padding:0.625rem 0.75rem;font-size:0.875rem;outline:none;
+      font-family:inherit;background:#fff;
+    }
+    .gift-select:focus { border-color:var(--brand); }
+    .gift-submit { width:100%;background:var(--brand);color:#fff;font-weight:700;padding:0.875rem;border-radius:0.75rem;font-size:1.1rem;transition:all 0.2s; }
+    .gift-submit:hover { background:var(--brand-dark); }
+
+    /* ===== PRODUCTS PAGE ===== */
+    .products-header { background:#fff;border-bottom:1px solid rgba(248,200,220,0.3); }
+    .products-header-inner { max-width:1280px;margin:0 auto;padding:2rem 1rem; }
+    .search-bar { display:flex;gap:0.75rem;margin-bottom:1rem; }
+    .search-input-wrap { position:relative;flex:1; }
+    .search-icon { position:absolute;top:50%;transform:translateY(-50%);right:0.75rem;color:#9ca3af; }
+    .search-input {
+      width:100%;padding:0.75rem 2.5rem 0.75rem 1rem;
+      border:2px solid #e5e7eb;border-radius:1rem;font-size:0.875rem;outline:none;font-family:inherit;
+    }
+    .search-input:focus { border-color:var(--brand); }
+    .sort-select {
+      background:#fff;border:2px solid #e5e7eb;border-radius:1rem;
+      padding:0.75rem 1rem;font-size:0.875rem;outline:none;font-family:inherit;
+    }
+    .filter-btn {
+      display:flex;align-items:center;gap:0.5rem;padding:0.75rem 1rem;
+      border-radius:1rem;font-size:0.875rem;font-weight:700;transition:all 0.2s;border:2px solid #e5e7eb;background:#fff;color:#374151;
+    }
+    .filter-btn.active { background:var(--brand);color:#fff;border-color:var(--brand); }
+    .filter-panel { background:#fff;border-radius:1rem;padding:1.25rem;margin-bottom:1.25rem;border:1px solid #e5e7eb;box-shadow:0 2px 8px rgba(0,0,0,0.04); }
+    .filter-section-title { font-size:0.7rem;font-weight:900;color:#6b7280;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.75rem; }
+    .filter-chips { display:flex;flex-wrap:wrap;gap:0.5rem; }
+    .filter-chip {
+      padding:0.375rem 0.75rem;border-radius:9999px;font-size:0.75rem;font-weight:700;transition:all 0.15s;
+    }
+    .filter-chip.selected { background:var(--brand);color:#fff; }
+    .filter-chip.unselected { background:var(--soft-gray);color:#4b5563; }
+    .filter-chip.unselected:hover { background:var(--brand-light); }
+
+    /* ===== PRODUCT DETAIL ===== */
+    .breadcrumb { background:#fff;border-bottom:1px solid rgba(248,200,220,0.3);padding:0.75rem 0; }
+    .breadcrumb-inner { max-width:1280px;margin:0 auto;padding:0 1rem;display:flex;align-items:center;gap:0.5rem;font-size:0.875rem;color:#6b7280; }
+    .breadcrumb button { color:#6b7280;transition:color 0.15s; }
+    .breadcrumb button:hover { color:var(--brand); }
+    .breadcrumb-current { color:#1f2937;font-weight:500; }
+    .detail-grid { display:grid;gap:2.5rem;margin-bottom:4rem; }
+    .detail-main-img { width:100%;aspect-ratio:1;border-radius:1.5rem;overflow:hidden;background:#fff;box-shadow:0 12px 40px rgba(0,0,0,0.1); }
+    .detail-main-img img { width:100%;height:100%;object-fit:cover; }
+    .detail-thumbs { display:flex;gap:0.75rem;margin-top:0.75rem;flex-wrap:wrap; }
+    .detail-thumb {
+      width:80px;height:80px;border-radius:0.75rem;overflow:hidden;
+      border:2px solid transparent;opacity:0.6;transition:all 0.2s;cursor:pointer;
+    }
+    .detail-thumb.active { border-color:var(--brand);opacity:1;box-shadow:0 4px 12px rgba(231,84,128,0.2); }
+    .detail-thumb:hover { opacity:1; }
+    .detail-thumb img { width:100%;height:100%;object-fit:cover; }
+    .detail-badges { display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.75rem; }
+    .detail-badge { font-size:0.75rem;font-weight:700;padding:0.25rem 0.75rem;border-radius:9999px; }
+    .detail-badge-cat { background:var(--soft-gray);color:#6b7280; }
+    .detail-badge-occ { background:var(--brand-light);color:var(--brand); }
+    .detail-name { font-size:clamp(1.5rem,3vw,2rem);font-weight:900;color:#111827;margin-bottom:1rem;line-height:1.2; }
+    .detail-price { font-size:2.5rem;font-weight:900;color:var(--brand);margin-bottom:1rem; }
+    .detail-price span { font-size:1rem;color:#6b7280;font-weight:600; }
+    .avail-badge { display:inline-flex;align-items:center;gap:0.375rem;font-size:0.875rem;font-weight:700;padding:0.25rem 0.75rem;border-radius:9999px;margin-bottom:1.5rem; }
+    .avail-dot { width:8px;height:8px;border-radius:9999px; }
+    .avail-yes { background:#dcfce7;color:#15803d; }
+    .avail-yes .avail-dot { background:#22c55e; }
+    .avail-no { background:#f3f4f6;color:#6b7280; }
+    .avail-no .avail-dot { background:#9ca3af; }
+    .detail-desc { color:#4b5563;line-height:1.7;margin-bottom:1.5rem; }
+    .detail-section-title { font-weight:900;color:#1f2937;margin-bottom:0.75rem; }
+    .contents-list { list-style:none;display:flex;flex-direction:column;gap:0.5rem;margin-bottom:1.5rem; }
+    .contents-item { display:flex;align-items:center;gap:0.5rem;font-size:0.875rem;color:#4b5563; }
+    .contents-check { width:20px;height:20px;background:var(--brand-light);border-radius:9999px;display:flex;align-items:center;justify-content:center;color:var(--brand);font-size:0.65rem;flex-shrink:0; }
+    .color-chips,.size-chips { display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1rem; }
+    .color-chip,.size-chip { background:var(--soft-gray);color:#374151;font-size:0.75rem;padding:0.25rem 0.75rem;border-radius:9999px;border:1px solid #e5e7eb; }
+    .detail-actions { display:flex;flex-direction:column;gap:0.75rem;margin-top:1.5rem; }
+    .btn-wa-big {
+      flex:1;display:flex;align-items:center;justify-content:center;gap:0.5rem;
+      padding:1rem;border-radius:1rem;color:#fff;font-weight:900;font-size:1.1rem;transition:all 0.2s;
+    }
+    .btn-wa-big.avail { background:var(--wa);box-shadow:0 8px 20px rgba(37,211,102,0.2); }
+    .btn-wa-big.avail:hover { background:#1ebe5d; }
+    .btn-wa-big.unavail { background:#d1d5db;cursor:not-allowed; }
+    .btn-wish-detail,.btn-share-detail {
+      display:flex;align-items:center;justify-content:center;gap:0.375rem;
+      padding:1rem 1.25rem;border-radius:1rem;border:2px solid var(--brand);
+      font-weight:700;font-size:0.875rem;transition:all 0.2s;
+    }
+    .btn-wish-detail { color:var(--brand); }
+    .btn-wish-detail.wished { background:var(--brand);color:#fff; }
+    .btn-share-detail { border-color:#e5e7eb;color:#4b5563; }
+    .btn-share-detail:hover { border-color:var(--brand);color:var(--brand); }
+    .detail-meta { font-size:0.75rem;color:#9ca3af;text-align:center;margin-top:1rem; }
+
+    /* ===== CUSTOM BOX ===== */
+    .custom-header { background:linear-gradient(135deg,var(--brand),var(--brand-dark));color:#fff;padding:2.5rem 1rem;text-align:center; }
+    .custom-icon { width:56px;height:56px;margin:0 auto 0.75rem;border-radius:1rem;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center; }
+    .steps-bar { display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;overflow-x:auto;padding-bottom:0.5rem; }
+    .step-item { display:flex;align-items:center;gap:0.25rem;flex-shrink:0; }
+    .step-circle {
+      width:32px;height:32px;border-radius:9999px;display:flex;align-items:center;justify-content:center;
+      font-size:0.75rem;font-weight:900;transition:all 0.2s;
+    }
+    .step-circle.done { background:#22c55e;color:#fff; }
+    .step-circle.current { background:var(--brand);color:#fff; }
+    .step-circle.future { background:#e5e7eb;color:#9ca3af; }
+    .step-label { font-size:0.75rem;font-weight:600;display:none; }
+    .step-label.current-lbl { color:var(--brand); }
+    .step-line { width:24px;height:2px;margin:0 0.25rem; }
+    .step-line.done-line { background:#86efac; }
+    .step-line.future-line { background:#e5e7eb; }
+    .step-content { background:#fff;border-radius:1.5rem;padding:2rem;box-shadow:0 2px 12px rgba(0,0,0,0.04);border:1px solid #e5e7eb;min-height:16rem; }
+    .color-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:1rem; }
+    .color-option {
+      display:flex;flex-direction:column;align-items:center;gap:0.5rem;
+      padding:1rem;border-radius:1rem;border:2px solid #e5e7eb;transition:all 0.2s;cursor:pointer;
+    }
+    .color-option:hover { border-color:var(--brand-light); }
+    .color-option.selected { border-color:var(--brand);box-shadow:0 4px 16px rgba(231,84,128,0.2); }
+    .color-swatch { width:48px;height:48px;border-radius:9999px;border:2px solid rgba(255,255,255,0.5);box-shadow:inset 0 2px 4px rgba(0,0,0,0.1); }
+    .color-name { font-size:0.75rem;font-weight:700;color:#374151; }
+    .radio-list { display:flex;flex-direction:column;gap:0.5rem; }
+    .radio-option {
+      width:100%;text-align:right;padding:0.75rem 1rem;border-radius:0.75rem;
+      border:2px solid #e5e7eb;font-size:0.875rem;font-weight:500;
+      transition:all 0.2s;cursor:pointer;color:#374151;
+    }
+    .radio-option:hover { border-color:var(--brand-light); }
+    .radio-option.selected { border-color:var(--brand);background:var(--brand-light);color:var(--brand);font-weight:700; }
+    .acc-grid { display:grid;grid-template-columns:repeat(2,1fr);gap:0.75rem; }
+    .acc-option {
+      padding:0.75rem;border-radius:0.75rem;border:2px solid #e5e7eb;
+      font-size:0.75rem;font-weight:700;transition:all 0.2s;cursor:pointer;color:#374151;
+    }
+    .acc-option:hover { border-color:var(--brand-light); }
+    .acc-option.selected { border-color:var(--brand);background:var(--brand-light);color:var(--brand); }
+    .custom-input {
+      width:100%;border:2px solid #e5e7eb;border-radius:0.75rem;
+      padding:0.75rem 1rem;font-size:0.875rem;outline:none;font-family:inherit;
+    }
+    .custom-input:focus { border-color:var(--brand); }
+    .custom-textarea { resize:none; }
+    .budget-grid { display:grid;grid-template-columns:repeat(2,1fr);gap:0.5rem; }
+    .budget-opt {
+      padding:0.625rem 0.75rem;border-radius:0.75rem;border:2px solid #e5e7eb;
+      font-size:0.75rem;font-weight:700;transition:all 0.2s;cursor:pointer;color:#374151;
+    }
+    .budget-opt:hover { border-color:var(--brand-light); }
+    .budget-opt.selected { border-color:var(--brand);background:var(--brand-light);color:var(--brand); }
+    .review-row { display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;padding:0.5rem 0;border-bottom:1px solid #f3f4f6; }
+    .review-label { font-size:0.875rem;color:#6b7280;flex-shrink:0; }
+    .review-val { font-size:0.875rem;font-weight:700;color:#1f2937; }
+    .price-display { background:var(--brand-light);border-radius:1rem;padding:1rem;margin-bottom:1.5rem;text-align:center; }
+    .price-display-label { font-size:0.875rem;color:#4b5563;margin-bottom:0.25rem; }
+    .price-display-value { font-size:2rem;font-weight:900;color:var(--brand); }
+    .custom-nav { display:flex;gap:1rem;margin-top:1.5rem; }
+    .btn-prev { flex:1;border:2px solid #e5e7eb;color:#374151;font-weight:700;padding:0.875rem;border-radius:1rem;transition:all 0.2s; }
+    .btn-prev:hover { border-color:var(--brand);color:var(--brand); }
+    .btn-next { flex:1;background:var(--brand);color:#fff;font-weight:700;padding:0.875rem;border-radius:1rem;transition:all 0.2s;box-shadow:0 4px 12px rgba(231,84,128,0.2); }
+    .btn-next:hover { background:var(--brand-dark); }
+    .live-price { margin-top:1rem;text-align:center;font-size:0.875rem;color:#9ca3af; }
+    .live-price strong { font-weight:900;color:var(--brand); }
+
+    /* ===== GALLERY ===== */
+    .gallery-cats { display:flex;gap:0.5rem;overflow-x:auto;padding-bottom:0.75rem;margin-bottom:2rem; }
+    .gallery-cat {
+      flex-shrink:0;padding:0.5rem 1rem;border-radius:9999px;font-size:0.875rem;font-weight:700;transition:all 0.2s;
+    }
+    .gallery-cat.active { background:var(--brand);color:#fff;box-shadow:0 4px 12px rgba(231,84,128,0.2); }
+    .gallery-cat.inactive { background:#fff;color:#4b5563;border:1px solid #e5e7eb; }
+    .gallery-cat.inactive:hover { border-color:var(--brand);color:var(--brand); }
+    .gallery-grid { columns:2;gap:1rem; }
+    .gallery-item { break-inside:avoid;margin-bottom:1rem;border-radius:1rem;overflow:hidden;position:relative;cursor:pointer;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.06);transition:all 0.3s; }
+    .gallery-item:hover { box-shadow:0 12px 30px rgba(0,0,0,0.12); }
+    .gallery-item img { width:100%;object-fit:cover;display:block;transition:transform 0.5s; }
+    .gallery-item:hover img { transform:scale(1.05); }
+    .gallery-overlay { position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.6),transparent);opacity:0;transition:opacity 0.3s; }
+    .gallery-item:hover .gallery-overlay { opacity:1; }
+    .gallery-overlay-text { position:absolute;bottom:0.75rem;right:0.75rem;left:0.75rem; }
+    .gallery-title { color:#fff;font-weight:700;font-size:0.875rem; }
+    .gallery-tag { color:rgba(255,255,255,0.7);background:rgba(255,255,255,0.2);padding:0.125rem 0.5rem;border-radius:9999px;font-size:0.7rem;margin-top:0.25rem;display:inline-block; }
+    .lightbox { position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:100;display:flex;align-items:center;justify-content:center;padding:1rem; }
+    .lightbox.hidden { display:none; }
+    .lightbox img { max-width:100%;max-height:100%;object-fit:contain;border-radius:1rem;box-shadow:0 25px 50px rgba(0,0,0,0.5); }
+    .lightbox-close { position:absolute;top:1rem;left:1rem;color:rgba(255,255,255,0.7);font-size:2rem;font-weight:300;cursor:pointer;transition:color 0.2s; }
+    .lightbox-close:hover { color:#fff; }
+
+    /* ===== CONTACT ===== */
+    .contact-header { background:linear-gradient(135deg,var(--brand-light),var(--cream));border-bottom:1px solid rgba(248,200,220,0.3);padding:3rem 1rem;text-align:center; }
+    .contact-methods { display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.25rem;margin-bottom:3.5rem; }
+    .contact-card { background:#fff;border-radius:1.5rem;padding:1.5rem;box-shadow:0 2px 12px rgba(0,0,0,0.04);border:1px solid #e5e7eb;display:flex;flex-direction:column;align-items:center;text-align:center; }
+    .contact-card-icon { width:48px;height:48px;border-radius:9999px;background:var(--brand-light);color:var(--brand);display:flex;align-items:center;justify-content:center;margin-bottom:1rem; }
+    .contact-two-col { display:grid;gap:2rem;margin-bottom:3.5rem; }
+    .form-card { background:#fff;border-radius:1.5rem;padding:2rem;box-shadow:0 2px 12px rgba(0,0,0,0.04);border:1px solid #e5e7eb; }
+    .form-group { margin-bottom:1.25rem; }
+    .form-label { display:block;font-size:0.875rem;font-weight:700;color:#374151;margin-bottom:0.375rem; }
+    .form-input,.form-textarea {
+      width:100%;border:2px solid #e5e7eb;border-radius:0.75rem;
+      padding:0.75rem 1rem;font-size:0.875rem;outline:none;font-family:inherit;transition:border-color 0.15s;
+    }
+    .form-input:focus,.form-textarea:focus { border-color:var(--brand); }
+    .form-input.error,.form-textarea.error { border-color:#f87171;background:#fef2f2; }
+    .form-textarea { resize:none; }
+    .form-error { color:#ef4444;font-size:0.75rem;margin-top:0.25rem; }
+    .form-submit { width:100%;background:var(--brand);color:#fff;font-weight:900;padding:1rem;border-radius:0.75rem;font-size:1rem;transition:all 0.2s; }
+    .form-submit:hover { background:var(--brand-dark); }
+    .form-submit:disabled { opacity:0.6;cursor:not-allowed; }
+    .hours-card { background:#fff;border-radius:1.5rem;padding:1.5rem;box-shadow:0 2px 12px rgba(0,0,0,0.04);border:1px solid #e5e7eb;margin-bottom:1.25rem; }
+    .hours-row { display:flex;justify-content:space-between;align-items:center;padding:0.75rem;border-radius:0.75rem;background:var(--soft-gray);margin-bottom:0.5rem; }
+    .hours-day { font-weight:700;color:#1f2937;font-size:0.875rem; }
+    .hours-time { font-size:0.75rem;color:#6b7280; }
+    .hours-avail { font-size:0.75rem;font-weight:700;padding:0.25rem 0.625rem;border-radius:9999px; }
+    .hours-avail.yes { background:#dcfce7;color:#16a34a; }
+    .hours-avail.req { background:var(--brand-light);color:var(--brand); }
+    .wa-cta-card { background:var(--brand);border-radius:1.5rem;padding:1.5rem;color:#fff; }
+    .faq-item { background:#fff;border-radius:1rem;border:1px solid #e5e7eb;box-shadow:0 1px 4px rgba(0,0,0,0.04);margin-bottom:0.75rem;overflow:hidden; }
+    .faq-summary { display:flex;justify-content:space-between;align-items:center;padding:1.25rem;cursor:pointer;font-weight:700;color:#1f2937;list-style:none; }
+    .faq-icon { color:var(--brand);font-size:1.25rem;flex-shrink:0;margin-right:0.5rem;transition:transform 0.2s; }
+    details[open] .faq-icon { transform:rotate(45deg); }
+    .faq-body { padding:0 1.25rem 1.25rem;font-size:0.875rem;color:#4b5563;line-height:1.7;border-top:1px solid #f3f4f6;padding-top:0.75rem; }
+
+    /* ===== WISHLIST ===== */
+    .wishlist-empty { text-align:center;padding:6rem 1rem; }
+    .wishlist-empty-icon { width:96px;height:96px;background:var(--brand-light);border-radius:9999px;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem; }
+    .wishlist-wa-bar { background:#fff;border-radius:1rem;padding:1.25rem;border:1px solid rgba(248,200,220,0.3);box-shadow:0 1px 4px rgba(0,0,0,0.04);margin-bottom:2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap; }
+    .wishlist-total { background:#fff;border-radius:1rem;padding:1.25rem;border:1px solid rgba(248,200,220,0.3);box-shadow:0 1px 4px rgba(0,0,0,0.04);margin-top:2rem;display:flex;align-items:center;justify-content:space-between; }
+    .total-label { color:#4b5563;font-weight:500; }
+    .total-value { font-size:1.5rem;font-weight:900;color:var(--brand); }
+
+    /* ===== OCCASIONS ===== */
+    .occ-cards { display:grid;grid-template-columns:repeat(2,1fr);gap:0.75rem;margin-bottom:3rem; }
+    .occ-card {
+      border:2px solid;border-radius:1rem;padding:1rem;
+      display:flex;flex-direction:column;align-items:center;gap:0.5rem;
+      transition:all 0.2s;cursor:pointer;
+    }
+    .occ-card:hover { box-shadow:0 4px 15px rgba(0,0,0,0.1);transform:translateY(-2px); }
+    .occ-card.selected { box-shadow:0 6px 20px rgba(231,84,128,0.2);transform:scale(1.03); outline:2px solid var(--brand);outline-offset:2px; }
+    .occ-icon-big { font-size:2rem; }
+    .occ-label { font-size:0.75rem;font-weight:900;text-align:center;line-height:1.2; }
+
+    /* ===== ADMIN ===== */
+    .admin-header { background:#111827;color:#fff;padding:1rem;display:flex;align-items:center;justify-content:space-between; }
+    .admin-stats { display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-bottom:1.5rem; }
+    .admin-stat { border-radius:1rem;padding:1rem; }
+    .admin-stat-value { font-size:1.5rem;font-weight:900; }
+    .admin-stat-label { font-size:0.875rem;opacity:0.9; }
+    .admin-tabs { display:flex;gap:0.25rem;background:#fff;border-radius:1rem;padding:0.25rem;border:1px solid #e5e7eb;box-shadow:0 1px 4px rgba(0,0,0,0.04);margin-bottom:1.5rem;width:fit-content;overflow-x:auto; }
+    .admin-tab { padding:0.5rem 1rem;border-radius:0.75rem;font-size:0.875rem;font-weight:700;transition:all 0.15s;white-space:nowrap; }
+    .admin-tab.active { background:var(--brand);color:#fff; }
+    .admin-tab.inactive { color:#4b5563; }
+    .admin-tab.inactive:hover { color:var(--brand); }
+    .admin-table { width:100%;border-collapse:collapse;font-size:0.875rem; }
+    .admin-table th { text-align:right;padding:0.75rem 1rem;font-weight:700;color:#4b5563;background:var(--soft-gray);border-bottom:1px solid #e5e7eb; }
+    .admin-table td { padding:0.75rem 1rem;border-bottom:1px solid #f9fafb; }
+    .admin-table tr:hover td { background:rgba(245,245,245,0.5); }
+    .modal-overlay { position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:60;display:flex;align-items:flex-start;justify-content:center;padding:1rem;overflow-y:auto; }
+    .modal-overlay.hidden { display:none; }
+    .modal-box { background:#fff;border-radius:1.5rem;width:100%;max-width:42rem;margin:2rem 0;box-shadow:0 25px 50px rgba(0,0,0,0.2); }
+    .modal-header { display:flex;align-items:center;justify-content:space-between;padding:1rem 1.5rem;border-bottom:1px solid #e5e7eb; }
+    .modal-title { font-weight:900;font-size:1.1rem;color:#1f2937; }
+    .modal-close { color:#9ca3af;font-size:1.5rem;line-height:1;cursor:pointer;transition:color 0.15s; }
+    .modal-close:hover { color:#374151; }
+    .modal-body { padding:1.5rem;max-height:70vh;overflow-y:auto; }
+    .modal-footer { padding:1rem 1.5rem;border-top:1px solid #e5e7eb;display:flex;gap:0.75rem; }
+    .admin-input,.admin-select,.admin-textarea {
+      width:100%;border:2px solid #e5e7eb;border-radius:0.75rem;
+      padding:0.625rem 0.75rem;font-size:0.875rem;outline:none;font-family:inherit;
+    }
+    .admin-input:focus,.admin-select:focus,.admin-textarea:focus { border-color:var(--brand); }
+    .admin-textarea { resize:none; }
+    .form-row { display:grid;grid-template-columns:1fr 1fr;gap:1rem; }
+    .form-row-label { display:block;font-size:0.75rem;font-weight:700;color:#4b5563;margin-bottom:0.25rem; }
+    .occ-chips { display:flex;flex-wrap:wrap;gap:0.5rem; }
+    .occ-chip {
+      padding:0.25rem 0.75rem;border-radius:9999px;font-size:0.75rem;font-weight:700;transition:all 0.15s;cursor:pointer;
+    }
+    .occ-chip.selected { background:var(--brand);color:#fff; }
+    .occ-chip.unselected { background:var(--soft-gray);color:#4b5563; }
+    .admin-login { min-height:100vh;background:var(--soft-gray);display:flex;align-items:center;justify-content:center;padding:1rem; }
+    .admin-login-box { background:#fff;border-radius:1.5rem;padding:2rem;width:100%;max-width:24rem;box-shadow:0 8px 30px rgba(0,0,0,0.08);border:1px solid rgba(248,200,220,0.2); }
+    .mini-bar { width:100%;height:8px;background:var(--soft-gray);border-radius:4px;overflow:hidden;margin-top:4px; }
+    .mini-bar-fill { height:100%;border-radius:4px;transition:width 0.7s ease; }
+
+    /* ===== WA FLOAT ===== */
+    #wa-float {
+      position:fixed;bottom:1.5rem;left:1.5rem;z-index:50;
+      width:56px;height:56px;background:var(--wa);border-radius:9999px;
+      display:flex;align-items:center;justify-content:center;
+      box-shadow:0 8px 20px rgba(37,211,102,0.4);transition:all 0.2s;
+    }
+    #wa-float:hover { background:#1ebe5d;transform:scale(1.1); }
+    #wa-float .ping { position:absolute;inset:0;border-radius:9999px;background:var(--wa);animation:ping 1.5s ease-out infinite;opacity:0.2; }
+    @keyframes ping { 0%{transform:scale(1);opacity:0.2} 100%{transform:scale(1.8);opacity:0} }
+
+    /* ===== SUCCESS / ERROR STATES ===== */
+    .success-box { display:flex;flex-direction:column;align-items:center;justify-content:center;padding:3rem;text-align:center; }
+    .success-icon { width:64px;height:64px;background:#dcfce7;border-radius:9999px;display:flex;align-items:center;justify-content:center;color:#15803d;font-size:1.5rem;font-weight:900;margin-bottom:1rem; }
+    .error-box { background:#fef2f2;border:1px solid #fecaca;border-radius:0.75rem;padding:0.75rem 1rem;font-size:0.875rem;color:#dc2626;margin-bottom:1rem; }
+    .loading-spinner { width:40px;height:40px;border:4px solid rgba(231,84,128,0.2);border-top-color:var(--brand);border-radius:9999px;animation:spin 0.8s linear infinite;margin:0 auto; }
+    @keyframes spin { to { transform:rotate(360deg); } }
+
+    /* ===== PAGE BG ===== */
+    .bg-soft-gray { background:var(--soft-gray); }
+    .bg-white { background:#fff; }
+    .bg-cream { background:var(--cream); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (min-width:640px) {
+      .occasions-grid { grid-template-columns:repeat(7,1fr); }
+      .products-grid-4 { grid-template-columns:repeat(3,1fr); }
+      .occ-cards { grid-template-columns:repeat(4,1fr); }
+      .admin-stats { grid-template-columns:repeat(4,1fr); }
+      .gallery-grid { columns:3; }
+      .form-two-col { display:grid;grid-template-columns:1fr 1fr;gap:1rem; }
+      .contact-two-col { grid-template-columns:3fr 2fr; }
+      .detail-grid { grid-template-columns:1fr 1fr; }
+      .acc-grid { grid-template-columns:repeat(3,1fr); }
+      .step-label { display:block; }
+      .hero-grid { grid-template-columns:1fr 1fr; }
+      .testimonials-grid { grid-template-columns:repeat(2,1fr); }
+      .gift-selects { grid-template-columns:repeat(3,1fr); }
+    }
+    @media (min-width:1024px) {
+      .products-grid-4 { grid-template-columns:repeat(4,1fr); }
+      .testimonials-grid { grid-template-columns:repeat(4,1fr); }
+      .nav-links { display:flex; }
+      .hamburger { display:none !important; }
+    }
+    @media (max-width:1023px) {
+      .nav-links { display:none; }
+      .hamburger { display:block !important; }
+      .wa-btn-nav .wa-text { display:none; }
+    }
+    @media (max-width:639px) {
+      .gift-selects { grid-template-columns:1fr; }
+      .hero-grid { grid-template-columns:1fr; }
+      .detail-grid { grid-template-columns:1fr; }
+      .form-row { grid-template-columns:1fr; }
+      .hero-img-wrap { order:-1; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header id="navbar">
+  <div class="navbar-inner">
+    <button class="logo-btn" onclick="navigate('home')">
+      <div class="logo-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round">
+          <path d="M4 10h16v10H4z"/><path d="M3.5 8h17v3h-17z"/>
+          <path d="M12 8v12" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div>
+        <div class="logo-title">Anne</div>
+        <div class="logo-sub">CUP BOX</div>
+      </div>
+    </button>
+
+    <nav class="nav-links" id="nav-links">
+      <button class="nav-link" data-page="home" onclick="navigate('home')">الرئيسية</button>
+      <button class="nav-link" data-page="products" onclick="navigate('products')">المنتجات</button>
+      <button class="nav-link" data-page="occasions" onclick="navigate('occasions')">المناسبات</button>
+      <button class="nav-link" data-page="custom-box" onclick="navigate('custom-box')">صمم صندوقك</button>
+      <button class="nav-link" data-page="gallery" onclick="navigate('gallery')">معرض الأعمال</button>
+      <button class="nav-link" data-page="contact" onclick="navigate('contact')">تواصل معنا</button>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="wishlist-btn" onclick="navigate('wishlist')" title="قائمة الأمنيات">
+        <svg id="wish-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+        </svg>
+        <span class="wishlist-count hidden" id="wish-count">0</span>
+      </button>
+      <a href="https://wa.me/966501234567?text=مرحباً، أريد الاستفسار عن منتجاتكم" target="_blank" class="wa-btn-nav">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <span class="wa-text">تواصل الآن</span>
+      </a>
+      <button class="hamburger" id="hamburger-btn" onclick="toggleMenu()" aria-label="القائمة">
+        <span id="hb1"></span><span id="hb2"></span><span id="hb3"></span>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu">
+    <button class="mob-link" data-mob="home" onclick="navigate('home');closeMenu()">الرئيسية</button>
+    <button class="mob-link" data-mob="products" onclick="navigate('products');closeMenu()">المنتجات</button>
+    <button class="mob-link" data-mob="occasions" onclick="navigate('occasions');closeMenu()">المناسبات</button>
+    <button class="mob-link" data-mob="custom-box" onclick="navigate('custom-box');closeMenu()">صمم صندوقك</button>
+    <button class="mob-link" data-mob="gallery" onclick="navigate('gallery');closeMenu()">معرض الأعمال</button>
+    <button class="mob-link" data-mob="contact" onclick="navigate('contact');closeMenu()">تواصل معنا</button>
+    <a href="https://wa.me/966501234567?text=مرحباً، أريد الاستفسار عن منتجاتكم" target="_blank" class="wa-mob">تواصل عبر واتساب</a>
+  </div>
+</header>
+
+<!-- MAIN CONTENT -->
+<main id="main">
+
+<!-- ==================== HOME ==================== -->
+<div class="page" id="page-home">
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-grid">
+      <div style="order:2">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>هدايا فاخرة لكل مناسبة
+        </div>
+        <h1 class="hero-h1">اجعلي <span>لحظتها</span><br>لا تُنسى</h1>
+        <p class="hero-p">صناديق هدايا فاخرة مصممة بعناية واهتمام لكل مناسبة، مع إمكانية التخصيص الكامل حسب ذوقكِ.</p>
+        <div class="hero-btns">
+          <button class="btn-primary" onclick="navigate('products')">تصفحي المنتجات</button>
+          <a href="https://wa.me/966501234567?text=مرحباً، أريد الاستفسار عن منتجاتكم" target="_blank" class="btn-wa">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            اطلبي الآن
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div><div class="hero-stat-val">500+</div><div class="hero-stat-lbl">عميل سعيد</div></div>
+          <div><div class="hero-stat-val">50+</div><div class="hero-stat-lbl">تصميم فريد</div></div>
+          <div><div class="hero-stat-val">100%</div><div class="hero-stat-lbl">جودة مضمونة</div></div>
+        </div>
+      </div>
+      <div class="hero-img-wrap" style="order:1">
+        <div class="hero-main-img">
+          <img src="https://images.unsplash.com/photo-1549465220-1d8a927c7efd?w=600&h=600&fit=crop&auto=format" alt="صندوق هدية فاخر" loading="lazy"/>
+        </div>
+        <div class="hero-thumb-1">
+          <img src="https://images.unsplash.com/photo-1490750967868-88df5691cc2e?w=200&h=200&fit=crop&auto=format" alt="ورود جميلة" loading="lazy"/>
+        </div>
+        <div class="hero-thumb-2">
+          <img src="https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=200&h=200&fit=crop&auto=format" alt="كوب فاخر" loading="lazy"/>
+        </div>
+        <div class="hero-badge-top">الأفضل مبيعاً</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Occasions Strip -->
+  <section class="occasions-strip">
+    <div class="max-w-7xl px-4">
+      <div class="section-header">
+        <h2 class="section-h2">تسوقي حسب المناسبة</h2>
+        <p class="section-p">هدية مناسبة لكل لحظة خاصة</p>
+      </div>
+      <div class="occasions-grid" id="home-occasions"></div>
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <section style="padding:4rem 0;background:var(--soft-gray)">
+    <div class="max-w-7xl px-4">
+      <div class="section-flex-header">
+        <div>
+          <h2 class="section-h2">المنتجات المميزة</h2>
+          <p class="section-p">الأكثر طلباً وإعجاباً</p>
+        </div>
+        <button class="see-all" onclick="navigate('products')">عرض الكل ←</button>
+      </div>
+      <div class="products-grid products-grid-2 products-grid-4" id="featured-products"></div>
+    </div>
+  </section>
+
+  <!-- New Arrivals -->
+  <section style="padding:4rem 0;background:#fff">
+    <div class="max-w-7xl px-4">
+      <div class="section-flex-header">
+        <div>
+          <span style="color:var(--brand);font-weight:700;font-size:0.875rem">وصل حديثاً</span>
+          <h2 class="section-h2" style="margin-top:0.25rem">أحدث التصاميم</h2>
+        </div>
+        <button class="see-all" onclick="navigate('products')">عرض الكل ←</button>
+      </div>
+      <div class="products-grid products-grid-2 products-grid-4" id="new-products"></div>
+    </div>
+  </section>
+
+  <!-- CTA Custom Box -->
+  <div class="cta-banner">
+    <div style="position:relative;max-width:900px;margin:0 auto">
+      <div class="cta-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+      </div>
+      <h2 class="cta-h2">صممي صندوقك الخاص</h2>
+      <p class="cta-p">اختاري كل شيء بنفسك — اللون، الكوب، الشوكولاتة، الرسالة — وأرسلي طلبك مباشرة عبر واتساب.</p>
+      <button class="cta-btn-white" onclick="navigate('custom-box')">ابدئي التصميم الآن</button>
+    </div>
+  </div>
+
+  <!-- Gift Idea Generator -->
+  <section class="gift-finder">
+    <div class="max-w-3xl px-4">
+      <div class="section-header">
+        <div style="width:48px;height:48px;margin:0 auto 0.75rem;border-radius:9999px;background:var(--brand-light);color:var(--brand);font-weight:900;display:flex;align-items:center;justify-content:center">؟</div>
+        <h2 class="section-h2">مولّد أفكار الهدايا</h2>
+        <p class="section-p">أخبرينا عن المناسبة وميزانيتك ونقترح لكِ أفضل الخيارات</p>
+      </div>
+      <div class="gift-finder-box">
+        <div class="gift-selects">
+          <div><label class="gift-label">لمن الهدية؟</label>
+            <select class="gift-select" id="gf-for">
+              <option value="">اختاري</option>
+              <option>أم</option><option>صديقة</option><option>أخت</option><option>زوجة</option><option>معلمة</option><option>زميلة</option>
+            </select>
+          </div>
+          <div><label class="gift-label">المناسبة</label>
+            <select class="gift-select" id="gf-occ">
+              <option value="">اختاري</option>
+              <option>عيد ميلاد</option><option>تخرج</option><option>خطوبة</option><option>مولود جديد</option><option>عيد الأم</option><option>عيد الحب</option><option>مفاجآت</option>
+            </select>
+          </div>
+          <div><label class="gift-label">الميزانية</label>
+            <select class="gift-select" id="gf-budget">
+              <option value="">اختاري</option>
+              <option value="100">أقل من 100 ريال</option>
+              <option value="200">100 – 200 ريال</option>
+              <option value="300">200 – 300 ريال</option>
+              <option value="Infinity">أكثر من 300 ريال</option>
+            </select>
+          </div>
+        </div>
+        <button class="gift-submit" onclick="findGifts()">اقترحي لي هدية</button>
+        <div id="gift-results" style="margin-top:1.5rem"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section style="padding:4rem 0;background:#fff">
+    <div class="max-w-7xl px-4">
+      <div class="section-header">
+        <h2 class="section-h2">ماذا تقول عميلاتنا</h2>
+        <p class="section-p">آراء حقيقية من عميلات نثق بهن</p>
+      </div>
+      <div class="testimonials-grid" id="testimonials-list"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ==================== PRODUCTS ==================== -->
+<div class="page" id="page-products">
+  <div class="products-header">
+    <div class="products-header-inner">
+      <h1 style="font-size:1.75rem;font-weight:900;color:#1f2937;margin-bottom:0.25rem">جميع المنتجات</h1>
+      <p style="color:#6b7280;font-size:0.875rem" id="products-count">12 منتج متوفر</p>
+    </div>
+  </div>
+  <div class="max-w-7xl px-4" style="padding-top:1.5rem;padding-bottom:3rem">
+    <div class="search-bar">
+      <div class="search-input-wrap">
+        <svg class="search-icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        <input class="search-input" id="search-input" type="text" placeholder="ابحثي عن منتج..." oninput="filterProducts()"/>
+      </div>
+      <select class="sort-select" id="sort-select" onchange="filterProducts()">
+        <option value="newest">الأحدث</option>
+        <option value="popular">الأعلى مبيعاً</option>
+        <option value="price-asc">السعر: الأقل أولاً</option>
+        <option value="price-desc">السعر: الأعلى أولاً</option>
+      </select>
+      <button class="filter-btn" id="filter-btn" onclick="toggleFilter()">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/></svg>
+        فلتر
+      </button>
+    </div>
+
+    <div class="filter-panel hidden" id="filter-panel">
+      <div style="display:grid;gap:1.25rem" class="form-two-col">
+        <div>
+          <p class="filter-section-title">الفئة</p>
+          <div class="filter-chips" id="cat-chips"></div>
+        </div>
+        <div>
+          <p class="filter-section-title">المناسبة</p>
+          <div class="filter-chips" id="occ-chips"></div>
+        </div>
+        <div>
+          <p class="filter-section-title">التوفر</p>
+          <label style="display:flex;align-items:center;gap:0.5rem;cursor:pointer">
+            <div id="toggle-avail" onclick="toggleAvail()" style="width:40px;height:24px;border-radius:9999px;background:#e5e7eb;position:relative;transition:all 0.2s;cursor:pointer">
+              <span id="toggle-dot" style="position:absolute;top:4px;left:4px;width:16px;height:16px;background:#fff;border-radius:9999px;box-shadow:0 1px 3px rgba(0,0,0,0.2);transition:all 0.2s"></span>
+            </div>
+            <span style="font-size:0.875rem;color:#374151;font-weight:500">المتوفر فقط</span>
+          </label>
+        </div>
+      </div>
+      <button onclick="clearFilters()" id="clear-filters-btn" class="hidden" style="margin-top:1rem;font-size:0.75rem;color:var(--brand);font-weight:700">مسح جميع الفلاتر</button>
+    </div>
+
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem">
+      <p style="font-size:0.875rem;color:#6b7280">يُعرض <strong id="filtered-count" style="color:#1f2937">0</strong> منتج</p>
+    </div>
+    <div class="products-grid products-grid-2 products-grid-4" id="products-grid"></div>
+  </div>
+</div>
+
+<!-- ==================== PRODUCT DETAIL ==================== -->
+<div class="page" id="page-product-detail">
+  <div class="breadcrumb">
+    <div class="breadcrumb-inner">
+      <button onclick="navigate('home')">الرئيسية</button>
+      <span>/</span>
+      <button onclick="navigate('products')">المنتجات</button>
+      <span>/</span>
+      <span class="breadcrumb-current" id="detail-breadcrumb">المنتج</span>
+    </div>
+  </div>
+  <div class="max-w-7xl px-4" style="padding:2rem 1rem 4rem">
+    <div class="detail-grid" id="detail-content">
+      <!-- filled by JS -->
+    </div>
+    <div id="similar-products"></div>
+    <!-- Review form -->
+    <div style="background:#fff;border-radius:1.5rem;padding:2rem;box-shadow:0 2px 12px rgba(0,0,0,0.04);border:1px solid #e5e7eb" id="review-section">
+      <h2 style="font-size:1.25rem;font-weight:900;color:#1f2937;margin-bottom:0.5rem">أضيفي تقييمك</h2>
+      <p style="font-size:0.875rem;color:#6b7280;margin-bottom:1.5rem">تقييمك يساعد العملاء على اتخاذ قرارهم ويُراجع قبل النشر</p>
+      <div id="review-form-wrap">
+        <div style="margin-bottom:1.25rem">
+          <label class="form-label">تقييمك *</label>
+          <div id="star-rating" style="display:flex;align-items:center;gap:0.25rem"></div>
+        </div>
+        <div class="form-two-col" style="display:grid;gap:1rem;margin-bottom:1rem">
+          <div>
+            <label class="form-label">اسمك *</label>
+            <input class="form-input" id="rev-author" type="text" placeholder="اسمك الكريم"/>
+            <p class="form-error hidden" id="rev-author-err"></p>
+          </div>
+          <div>
+            <label class="form-label">بريدك الإلكتروني *</label>
+            <input class="form-input" id="rev-email" type="email" dir="ltr" placeholder="example@email.com"/>
+            <p class="form-error hidden" id="rev-email-err"></p>
+          </div>
+        </div>
+        <div style="margin-bottom:1.25rem">
+          <label class="form-label">تقييمك *</label>
+          <textarea class="form-input form-textarea" id="rev-content" rows="3" placeholder="شاركي تجربتك مع هذا المنتج..."></textarea>
+          <p class="form-error hidden" id="rev-content-err"></p>
+        </div>
+        <div class="error-box hidden" id="rev-error">حدث خطأ. يرجى المحاولة مرة أخرى.</div>
+        <button class="form-submit" style="max-width:200px" id="rev-submit" onclick="submitReview()">إرسال التقييم</button>
+        <p style="font-size:0.75rem;color:#9ca3af;margin-top:0.5rem">لن يُنشر بريدك الإلكتروني، ويتم مراجعة التقييم قبل الظهور.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== CUSTOM BOX ==================== -->
+<div class="page" id="page-custom-box">
+  <div class="custom-header">
+    <div class="custom-icon">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+    </div>
+    <h1 style="font-size:1.75rem;font-weight:900;margin-bottom:0.5rem">صمّمي صندوقك الخاص</h1>
+    <p style="color:rgba(255,255,255,0.8)">اختاري كل تفصيلة وأرسلي طلبك مباشرة عبر واتساب</p>
+  </div>
+  <div class="max-w-3xl px-4" style="padding-top:2rem;padding-bottom:3rem">
+    <div class="steps-bar" id="steps-bar"></div>
+    <div class="step-content" id="step-content"></div>
+    <div class="custom-nav" id="custom-nav"></div>
+    <div class="live-price" id="live-price"></div>
+  </div>
+</div>
+
+<!-- ==================== GALLERY ==================== -->
+<div class="page" id="page-gallery">
+  <div style="background:#fff;border-bottom:1px solid rgba(248,200,220,0.3)">
+    <div class="max-w-7xl px-4" style="padding:2.5rem 1rem;text-align:center">
+      <h1 style="font-size:1.75rem;font-weight:900;color:#1f2937;margin-bottom:0.5rem">معرض أعمالنا</h1>
+      <p style="color:#6b7280">تصاميم حقيقية من عالم Anne Cup Box</p>
+    </div>
+  </div>
+  <div class="max-w-7xl px-4" style="padding:2rem 1rem 3rem">
+    <div class="gallery-cats" id="gallery-cats"></div>
+    <div class="gallery-grid" id="gallery-grid"></div>
+    <div style="text-align:center;margin-top:4rem;padding:3rem;background:#fff;border-radius:1.5rem;border:1px solid rgba(248,200,220,0.3)">
+      <h2 style="font-size:1.5rem;font-weight:900;color:#1f2937;margin-bottom:0.5rem">أعجبكِ ما رأيتِ؟</h2>
+      <p style="color:#6b7280;margin-bottom:1.5rem">تواصلي معنا الآن لتصميم هديتك الخاصة</p>
+      <a href="https://wa.me/966501234567?text=مرحباً، رأيت أعمالكم وأريد تصميم هدية خاصة" target="_blank" class="btn-wa" style="display:inline-flex;padding:1rem 2rem;border-radius:1rem;font-size:1rem">
+        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        تواصلي معنا
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== CONTACT ==================== -->
+<div class="page" id="page-contact">
+  <div class="contact-header">
+    <h1 style="font-size:1.75rem;font-weight:900;color:#1f2937;margin-bottom:0.5rem">تواصلي معنا</h1>
+    <p style="color:#4b5563;max-width:32rem;margin:0 auto">سعيدات دائماً بتلقي استفساراتكم وطلباتكم المخصصة.</p>
+  </div>
+  <div class="max-w-7xl px-4" style="padding:3rem 1rem">
+    <div class="contact-methods">
+      <div class="contact-card">
+        <div class="contact-card-icon"><svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
+        <h3 style="font-weight:900;font-size:1.1rem;margin-bottom:0.25rem">واتساب</h3>
+        <p style="font-weight:700;color:#374151;margin-bottom:0.25rem">+966 50 123 4567</p>
+        <p style="font-size:0.75rem;color:#9ca3af;margin-bottom:1.25rem">السبت – الخميس: 9 ص – 10 م</p>
+        <a href="https://wa.me/966501234567?text=مرحباً، أريد الاستفسار" target="_blank" style="background:var(--wa);color:#fff;font-weight:700;padding:0.625rem 1.5rem;border-radius:9999px;font-size:0.875rem;display:inline-block;transition:all 0.2s">راسلينا الآن</a>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-icon" style="background:linear-gradient(135deg,#a855f7,var(--brand));color:#fff"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div>
+        <h3 style="font-weight:900;font-size:1.1rem;margin-bottom:0.25rem">انستغرام</h3>
+        <p style="font-weight:700;color:#374151;margin-bottom:0.25rem">@annecupbox</p>
+        <p style="font-size:0.75rem;color:#9ca3af;margin-bottom:1.25rem">شاهدي آخر تصاميمنا</p>
+        <a href="https://instagram.com/annecupbox" target="_blank" style="background:linear-gradient(135deg,#a855f7,var(--brand));color:#fff;font-weight:700;padding:0.625rem 1.5rem;border-radius:9999px;font-size:0.875rem;display:inline-block">تابعينا</a>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-icon" style="background:#1877F2;color:#fff"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></div>
+        <h3 style="font-weight:900;font-size:1.1rem;margin-bottom:0.25rem">فيسبوك</h3>
+        <p style="font-weight:700;color:#374151;margin-bottom:0.25rem">Anne Cup Box</p>
+        <p style="font-size:0.75rem;color:#9ca3af;margin-bottom:1.25rem">صفحتنا الرسمية</p>
+        <a href="https://facebook.com/annecupbox" target="_blank" style="background:#1877F2;color:#fff;font-weight:700;padding:0.625rem 1.5rem;border-radius:9999px;font-size:0.875rem;display:inline-block">أعجبيني</a>
+      </div>
+    </div>
+
+    <div class="contact-two-col">
+      <div class="form-card">
+        <h2 style="font-size:1.1rem;font-weight:900;color:#1f2937;margin-bottom:1.5rem">أرسلي لنا رسالة</h2>
+        <div id="contact-form-wrap">
+          <div class="form-two-col" style="display:grid;gap:1rem;margin-bottom:1.25rem">
+            <div>
+              <label class="form-label">الاسم الكريم *</label>
+              <input class="form-input" id="c-name" type="text" placeholder="اسمك الكريم"/>
+              <p class="form-error hidden" id="c-name-err"></p>
+            </div>
+            <div>
+              <label class="form-label">رقم الجوال *</label>
+              <input class="form-input" id="c-phone" type="tel" dir="ltr" placeholder="+966 5X XXX XXXX"/>
+              <p class="form-error hidden" id="c-phone-err"></p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">البريد الإلكتروني *</label>
+            <input class="form-input" id="c-email" type="email" dir="ltr" placeholder="example@email.com"/>
+            <p class="form-error hidden" id="c-email-err"></p>
+          </div>
+          <div class="form-group">
+            <label class="form-label">رسالتك *</label>
+            <textarea class="form-input form-textarea" id="c-message" rows="4" placeholder="اكتبي رسالتك أو استفسارك هنا..." oninput="document.getElementById('c-msg-count').textContent=this.value.length+' حرف'"></textarea>
+            <div style="display:flex;justify-content:space-between;margin-top:0.25rem">
+              <p class="form-error hidden" id="c-message-err"></p>
+              <span style="font-size:0.75rem;color:#9ca3af" id="c-msg-count">0 حرف</span>
+            </div>
+          </div>
+          <div class="error-box hidden" id="c-form-error">حدث خطأ أثناء الإرسال. يرجى المحاولة مرة أخرى أو التواصل عبر واتساب.</div>
+          <button class="form-submit" id="c-submit" onclick="submitContact()">إرسال الرسالة</button>
+          <p style="font-size:0.75rem;color:#9ca3af;text-align:center;margin-top:0.75rem">للردود الفورية، تواصلي مباشرة عبر واتساب.</p>
+        </div>
+      </div>
+      <div>
+        <div class="hours-card">
+          <h2 style="font-size:1rem;font-weight:900;color:#1f2937;margin-bottom:1.25rem">أوقات العمل</h2>
+          <div class="hours-row"><div><div class="hours-day">السبت – الخميس</div><div class="hours-time">9:00 ص – 10:00 م</div></div><span class="hours-avail yes">متاح</span></div>
+          <div class="hours-row"><div><div class="hours-day">الجمعة</div><div class="hours-time">2:00 م – 10:00 م</div></div><span class="hours-avail yes">متاح</span></div>
+          <div class="hours-row"><div><div class="hours-day">المناسبات والأعياد</div><div class="hours-time">بحسب الطلب</div></div><span class="hours-avail req">حسب الطلب</span></div>
+        </div>
+        <div class="wa-cta-card">
+          <div style="width:40px;height:40px;border-radius:9999px;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;margin-bottom:0.5rem">⚡</div>
+          <h3 style="font-weight:900;font-size:1.1rem;margin-bottom:0.5rem">رد خلال ساعات</h3>
+          <p style="color:rgba(255,255,255,0.8);font-size:0.875rem;margin-bottom:1rem">أسرع طريقة للتواصل هي واتساب — متوسط وقت الرد أقل من ساعة.</p>
+          <a href="https://wa.me/966501234567?text=مرحباً، لدي استفسار" target="_blank" style="display:inline-flex;align-items:center;gap:0.5rem;background:#fff;color:var(--brand);font-weight:900;padding:0.625rem 1.25rem;border-radius:0.75rem;font-size:0.875rem;transition:all 0.2s">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            واتساب الآن
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <h2 style="font-size:1.5rem;font-weight:900;color:#1f2937;margin-bottom:1.5rem;text-align:center">الأسئلة الشائعة</h2>
+    <div>
+      <details class="faq-item"><summary class="faq-summary"><span>كم يستغرق التحضير والتوصيل؟</span><span class="faq-icon">+</span></summary><div class="faq-body">يتم التحضير خلال 24-48 ساعة، والتوصيل حسب منطقتك (عادة 1-3 أيام عمل).</div></details>
+      <details class="faq-item"><summary class="faq-summary"><span>هل يمكن تخصيص الهدية بالكامل؟</span><span class="faq-icon">+</span></summary><div class="faq-body">نعم! جميع منتجاتنا قابلة للتخصيص. تواصلي معنا عبر واتساب وأخبرينا بما تريدين.</div></details>
+      <details class="faq-item"><summary class="faq-summary"><span>ما هي طرق الدفع المتاحة؟</span><span class="faq-icon">+</span></summary><div class="faq-body">نقبل التحويل البنكي، STC Pay، وأبشر Pay. يتم التأكيد بعد استلام الدفعة.</div></details>
+      <details class="faq-item"><summary class="faq-summary"><span>هل تتوفر خدمة التوصيل خارج المنطقة؟</span><span class="faq-icon">+</span></summary><div class="faq-body">نعم، نوصل لجميع مناطق المملكة العربية السعودية عبر شركات الشحن المعتمدة.</div></details>
+      <details class="faq-item"><summary class="faq-summary"><span>هل يمكن إرجاع أو استبدال المنتج؟</span><span class="faq-icon">+</span></summary><div class="faq-body">نضمن رضاك 100%. في حال وجود مشكلة في المنتج، تواصلي معنا فوراً وسنتعامل معها بمسؤولية.</div></details>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== OCCASIONS ==================== -->
+<div class="page" id="page-occasions">
+  <div style="background:#fff;border-bottom:1px solid rgba(248,200,220,0.3)">
+    <div class="max-w-7xl px-4" style="padding:2.5rem 1rem;text-align:center">
+      <h1 style="font-size:1.75rem;font-weight:900;color:#1f2937;margin-bottom:0.5rem">هدايا لكل مناسبة</h1>
+      <p style="color:#6b7280">اختاري المناسبة ونريكِ أفضل الهدايا المناسبة لها</p>
+    </div>
+  </div>
+  <div class="max-w-7xl px-4" style="padding:2rem 1rem 3rem">
+    <div class="occ-cards" id="occ-cards"></div>
+    <div id="occ-products"></div>
+  </div>
+</div>
+
+<!-- ==================== WISHLIST ==================== -->
+<div class="page" id="page-wishlist">
+  <div style="background:#fff;border-bottom:1px solid rgba(248,200,220,0.3)">
+    <div class="max-w-7xl px-4" style="padding:2rem 1rem">
+      <div style="display:flex;align-items:center;gap:0.75rem">
+        <button onclick="navigate('home')" style="color:#9ca3af;transition:color 0.15s;font-size:0.875rem">← رجوع</button>
+        <div>
+          <h1 style="font-size:1.5rem;font-weight:900;color:#1f2937;display:flex;align-items:center;gap:0.5rem">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="color:var(--brand)"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            قائمة الأمنيات
+          </h1>
+          <p style="color:#6b7280;font-size:0.875rem;margin-top:0.125rem" id="wish-page-count">0 منتج محفوظ</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="max-w-7xl px-4" style="padding:2rem 1rem 3rem">
+    <div id="wishlist-content"></div>
+  </div>
+</div>
+
+<!-- ==================== ADMIN ==================== -->
+<div class="page" id="page-admin">
+  <div id="admin-login-wrap" class="admin-login">
+    <div class="admin-login-box">
+      <div style="text-align:center;margin-bottom:1.5rem">
+        <div style="width:64px;height:64px;background:var(--brand);border-radius:9999px;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem">⚙️</div>
+        <h1 style="font-size:1.25rem;font-weight:900;color:#1f2937">لوحة التحكم</h1>
+        <p style="color:#6b7280;font-size:0.875rem;margin-top:0.25rem">ادخلي كلمة المرور للوصول</p>
+      </div>
+      <input class="admin-input" id="admin-pass" type="password" placeholder="كلمة المرور" onkeydown="if(event.key==='Enter')doAdminLogin()" style="margin-bottom:0.75rem"/>
+      <p class="form-error hidden" id="admin-login-err" style="text-align:center;margin-bottom:0.75rem">كلمة المرور غير صحيحة</p>
+      <button onclick="doAdminLogin()" style="width:100%;background:var(--brand);color:#fff;font-weight:700;padding:0.75rem;border-radius:0.75rem;transition:all 0.2s;margin-bottom:0.75rem">دخول</button>
+      <button onclick="navigate('home')" style="width:100%;color:#9ca3af;font-size:0.875rem">← العودة للموقع</button>
+    </div>
+  </div>
+  <div id="admin-panel" class="hidden">
+    <div class="admin-header">
+      <div style="display:flex;align-items:center;gap:0.75rem">
+        <div style="width:32px;height:32px;background:var(--brand);border-radius:0.5rem;display:flex;align-items:center;justify-content:center">⚙️</div>
+        <span style="font-weight:900">Anne Cup Box — لوحة التحكم</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:0.75rem">
+        <button onclick="navigate('home')" style="color:#9ca3af;font-size:0.875rem;transition:color 0.15s">← الموقع</button>
+        <button onclick="doAdminLogout()" style="background:#dc2626;color:#fff;font-size:0.875rem;font-weight:700;padding:0.375rem 0.75rem;border-radius:0.5rem">خروج</button>
+      </div>
+    </div>
+    <div class="max-w-7xl px-4" style="padding:1.5rem 1rem 3rem">
+      <div class="admin-stats" id="admin-stats"></div>
+      <div class="admin-tabs" id="admin-tabs"></div>
+      <div id="admin-tab-content"></div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<!-- FOOTER -->
+<footer id="footer" id="footer">
+  <div class="footer-grid">
+    <div>
+      <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:1rem">
+        <div style="width:40px;height:40px;border-radius:9999px;background:var(--brand);display:flex;align-items:center;justify-content:center">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"><path d="M4 10h16v10H4z"/><path d="M3.5 8h17v3h-17z"/><path d="M12 8v12" stroke-linecap="round"/></svg>
+        </div>
+        <div>
+          <div style="font-weight:900;color:var(--brand);font-size:1.1rem">Anne Cup Box</div>
+          <div style="font-size:0.7rem;color:var(--gold)">كتالوج الهدايا الذكي</div>
+        </div>
+      </div>
+      <p class="footer-text">نصنع لكِ أجمل لحظات الهدايا بتصاميم فاخرة ومميزة لكل مناسبة.</p>
+      <div style="display:flex;gap:0.5rem;margin-top:1rem">
+        <a href="https://instagram.com" target="_blank" class="footer-social" aria-label="Instagram">📷</a>
+        <a href="https://wa.me/966501234567" target="_blank" class="footer-social" aria-label="WhatsApp" style="--hover:var(--wa)">💬</a>
+      </div>
+    </div>
+    <div>
+      <h3 class="footer-title">روابط سريعة</h3>
+      <button class="footer-link" onclick="navigate('home')">الرئيسية</button>
+      <button class="footer-link" onclick="navigate('products')">جميع المنتجات</button>
+      <button class="footer-link" onclick="navigate('occasions')">المناسبات</button>
+      <button class="footer-link" onclick="navigate('custom-box')">صمم صندوقك</button>
+    </div>
+    <div>
+      <h3 class="footer-title">المناسبات</h3>
+      <button class="footer-link" onclick="navigate('occasions')">عيد ميلاد</button>
+      <button class="footer-link" onclick="navigate('occasions')">تخرج</button>
+      <button class="footer-link" onclick="navigate('occasions')">خطوبة</button>
+      <button class="footer-link" onclick="navigate('occasions')">مولود جديد</button>
+      <button class="footer-link" onclick="navigate('occasions')">عيد الأم</button>
+      <button class="footer-link" onclick="navigate('occasions')">عيد الحب</button>
+    </div>
+    <div>
+      <h3 class="footer-title">تواصلي معنا</h3>
+      <a href="https://wa.me/966501234567" target="_blank" class="footer-link" style="display:flex;align-items:center;gap:0.5rem">💬 واتساب</a>
+      <a href="https://instagram.com" target="_blank" class="footer-link" style="display:flex;align-items:center;gap:0.5rem">📷 انستغرام</a>
+      <p class="footer-text" style="margin-top:0.5rem">السبت - الخميس: 9ص - 10م</p>
+      <button onclick="navigate('admin')" style="margin-top:1.5rem;font-size:0.75rem;color:#374151;transition:color 0.15s">لوحة التحكم</button>
+    </div>
+  </div>
+  <div class="footer-bottom">© <span id="year"></span> Anne Cup Box - جميع الحقوق محفوظة</div>
+</footer>
+
+<!-- WA Float -->
+<a id="wa-float" href="https://wa.me/966501234567?text=مرحباً، أريد الاستفسار عن منتجاتكم" target="_blank" title="تواصل عبر واتساب">
+  <span class="ping"></span>
+  <svg width="28" height="28" fill="#fff" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- Lightbox -->
+<div class="lightbox hidden" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close" onclick="closeLightbox()">×</span>
+  <img id="lightbox-img" src="" alt="عرض كامل" onclick="event.stopPropagation()"/>
+</div>
+
+<!-- Admin Product Modal -->
+<div class="modal-overlay hidden" id="admin-modal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3 class="modal-title" id="modal-title">إضافة منتج جديد</h3>
+      <span class="modal-close" onclick="closeAdminModal()">×</span>
+    </div>
+    <div class="modal-body">
+      <div class="form-row" style="margin-bottom:1rem">
+        <div><label class="form-row-label">اسم المنتج *</label><input class="admin-input" id="m-name" placeholder="اسم المنتج"/></div>
+        <div><label class="form-row-label">السعر (ريال) *</label><input class="admin-input" id="m-price" type="number" placeholder="0"/></div>
+      </div>
+      <div style="margin-bottom:1rem"><label class="form-row-label">الفئة</label>
+        <select class="admin-select" id="m-cat">
+          <option>صناديق هدايا</option><option>أكواب</option><option>إكسسوارات</option><option>طقم كامل</option>
+        </select>
+      </div>
+      <div style="margin-bottom:1rem"><label class="form-row-label">الوصف</label><textarea class="admin-textarea" id="m-desc" rows="3" placeholder="وصف المنتج..."></textarea></div>
+      <div style="margin-bottom:1rem"><label class="form-row-label">المحتويات (سطر لكل عنصر)</label><textarea class="admin-textarea" id="m-contents" rows="3" placeholder="عنصر 1&#10;عنصر 2"></textarea></div>
+      <div class="form-row" style="margin-bottom:1rem">
+        <div><label class="form-row-label">الألوان (مفصولة بفاصلة)</label><input class="admin-input" id="m-colors" placeholder="وردي، ذهبي، أبيض"/></div>
+        <div><label class="form-row-label">المقاسات (اختياري)</label><input class="admin-input" id="m-sizes" placeholder="صغير، متوسط، كبير"/></div>
+      </div>
+      <div style="margin-bottom:1rem"><label class="form-row-label">المناسبات</label><div class="occ-chips" id="m-occ-chips"></div></div>
+      <div style="margin-bottom:1rem"><label class="form-row-label">روابط الصور (سطر لكل رابط)</label><textarea class="admin-textarea" id="m-images" rows="2" placeholder="https://..."></textarea></div>
+      <div style="display:flex;flex-wrap:wrap;gap:1rem">
+        <label style="display:flex;align-items:center;gap:0.5rem;cursor:pointer"><input type="checkbox" id="m-available" checked class="admin-check" style="accent-color:var(--brand)"/><span style="font-size:0.875rem;font-weight:500">متوفر</span></label>
+        <label style="display:flex;align-items:center;gap:0.5rem;cursor:pointer"><input type="checkbox" id="m-isnew" class="admin-check" style="accent-color:var(--brand)"/><span style="font-size:0.875rem;font-weight:500">جديد</span></label>
+        <label style="display:flex;align-items:center;gap:0.5rem;cursor:pointer"><input type="checkbox" id="m-featured" class="admin-check" style="accent-color:var(--brand)"/><span style="font-size:0.875rem;font-weight:500">مميز</span></label>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button id="modal-save" onclick="saveAdminProduct()" style="flex:1;background:var(--brand);color:#fff;font-weight:700;padding:0.75rem;border-radius:0.75rem;transition:all 0.2s">إضافة المنتج</button>
+      <button onclick="closeAdminModal()" style="padding:0.75rem 1.5rem;border:2px solid #e5e7eb;color:#4b5563;font-weight:700;border-radius:0.75rem;transition:all 0.2s">إلغاء</button>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Confirm -->
+<div class="modal-overlay hidden" id="delete-modal">
+  <div class="modal-box" style="max-width:24rem">
+    <div style="padding:2rem;text-align:center">
+      <div style="width:48px;height:48px;background:#fef3c7;border-radius:9999px;display:flex;align-items:center;justify-content:center;margin:0 auto 0.75rem;font-size:1.25rem">⚠️</div>
+      <h3 style="font-weight:900;color:#1f2937;margin-bottom:0.5rem">حذف المنتج؟</h3>
+      <p style="color:#6b7280;font-size:0.875rem;margin-bottom:1.5rem">هذا الإجراء لا يمكن التراجع عنه.</p>
+      <div style="display:flex;gap:0.75rem">
+        <button id="confirm-delete-btn" style="flex:1;background:#ef4444;color:#fff;font-weight:700;padding:0.75rem;border-radius:0.75rem">حذف</button>
+        <button onclick="closeDeleteModal()" style="flex:1;border:2px solid #e5e7eb;color:#4b5563;font-weight:700;padding:0.75rem;border-radius:0.75rem">إلغاء</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// DATA
+// ============================================================
+const IMG = (id, w=600, h=600) => `https://images.unsplash.com/photo-${id}?w=${w}&h=${h}&fit=crop&auto=format`;
+
+const ADMIN_PASSWORD = 'anne2024';
+const STORAGE_KEY = 'annecupbox_data';
+const WA_NUMBER = '966501234567';
+
+const defaultProducts = [
+  { id:'p1', name:'صندوق هدية الورد الفاخر', category:'صناديق هدايا', price:189, description:'صندوق هدية فاخر مزين بالورود الطبيعية والشريط الذهبي، مثالي لجميع المناسبات الرومانسية والاحتفالية.', contents:['باقة ورد طبيعي','شوكولاتة بلجيكية','شمعة معطرة','كارت هدية مخصص','تغليف فاخر'], colors:['وردي','أبيض','أحمر'], occasions:['عيد الحب','عيد الأم','مفاجآت'], available:true, images:[IMG('1549465220-1d8a927c7efd'),IMG('1490750967868-88df5691cc2e'),IMG('1606787366850-de6330128bfc')], isNew:true, views:245, waClicks:38, dateAdded:'2024-12-01', featured:true },
+  { id:'p2', name:'طقم كوب كيرة الذهبي', category:'أكواب', price:145, description:'كوب سيراميك فاخر مطلي بالذهب مع ملعقة خشبية وشاي مميز داخل صندوق هدية أنيق.', contents:['كوب سيراميك 350مل','ملعقة خشبية محفورة','شاي إيرل غراي فاخر','صندوق هدية أنيق'], colors:['ذهبي','أبيض','وردي'], occasions:['عيد ميلاد','تخرج','مفاجآت'], available:true, images:[IMG('1514228742587-6b1558fcca3d'),IMG('1563861826100-9cb868fdbe11')], isNew:true, views:198, waClicks:29, dateAdded:'2024-12-05', featured:true },
+  { id:'p3', name:'صندوق عيد الميلاد المبهج', category:'صناديق هدايا', price:220, description:'احتفلي بعيد الميلاد بأسلوب استثنائي مع صندوق هدايا مليء بالمفاجآت الجميلة.', contents:['كيك صغير','بالونات زينة','شوكولاتة مخصصة','كوب حفلات','شريط وزينة','كارت تهنئة'], colors:['وردي','ذهبي','أزرق','أبيض'], sizes:['صغير','متوسط','كبير'], occasions:['عيد ميلاد'], available:true, images:[IMG('1607344645866-009c320b63e0'),IMG('1549465220-1d8a927c7efd')], isNew:false, views:312, waClicks:55, dateAdded:'2024-11-15', featured:true },
+  { id:'p4', name:'كوب القهوة مع الشوكولاتة', category:'أكواب', price:99, description:'هدية بسيطة وجميلة لمحبي القهوة، كوب سيراميك مرسوم عليه رسالة إهداء مع تشكيلة شوكولاتة.', contents:['كوب سيراميك مطبوع','تشكيلة شوكولاتة 200غ','كارت هدية'], colors:['بني','وردي','أبيض'], occasions:['مفاجآت','عيد ميلاد'], available:true, images:[IMG('1548907040-4baa42d10919'),IMG('1514228742587-6b1558fcca3d')], isNew:false, views:167, waClicks:22, dateAdded:'2024-11-20' },
+  { id:'p5', name:'صندوق الخطوبة الذهبي الملكي', category:'صناديق هدايا', price:350, description:'صندوق خطوبة فاخر يليق بأجمل لحظات الحياة، مزين بالذهب والجواهر الاصطناعية مع تخصيص الاسمين.', contents:['صندوق مخملي ذهبي','ورود بريميوم','عطر نسائي','حلويات شرقية','كارت خطوبة مطرز','إكليل ذهبي'], colors:['ذهبي','كريمي','وردي فاتح'], occasions:['خطوبة'], available:true, images:[IMG('1606787366850-de6330128bfc'),IMG('1522337360788-8b13dee7a37e'),IMG('1490750967868-88df5691cc2e')], isNew:true, views:428, waClicks:87, dateAdded:'2024-12-10', featured:true },
+  { id:'p6', name:'طقم التخرج المتكامل', category:'طقم كامل', price:280, description:'احتفلي بنجاحك مع طقم التخرج المتكامل الذي يجمع بين الفخامة والإبداع.', contents:['قبعة تخرج مزينة','كوب "الدكتورة"','شوكولاتة بالاسم','باقة ورد','شهادة تهنئة مؤطرة'], colors:['ذهبي','أسود','وردي'], sizes:['متوسط','كبير'], occasions:['تخرج'], available:true, images:[IMG('1549465220-1d8a927c7efd'),IMG('1514228742587-6b1558fcca3d')], isNew:false, views:289, waClicks:48, dateAdded:'2024-11-01' },
+  { id:'p7', name:'صندوق عيد الأم الوردي', category:'صناديق هدايا', price:195, description:'عبّري عن حبك لأمك بأجمل هدية ممكنة، صندوق مليء بالمحبة والمفاجآت.', contents:['كوب "أحب أمي"','عطر فلورال','شوكولاتة','ورود مجففة','شمعة','رسالة حب مطرزة'], colors:['وردي','أبيض','ذهبي'], occasions:['عيد الأم'], available:true, images:[IMG('1490750967868-88df5691cc2e'),IMG('1522337360788-8b13dee7a37e')], isNew:false, views:356, waClicks:61, dateAdded:'2024-10-20' },
+  { id:'p8', name:'طقم الشاي الدافئ', category:'أكواب', price:85, description:'طقم شاي أنيق للأوقات الدافئة والمريحة، مع مزيج من أجود أنواع الشاي.', contents:['كوب سيراميك كبير','مزيج شاي فاخر','ملعقة إستنلس','كارت هدية'], colors:['بيج','وردي فاتح','أبيض'], occasions:['مفاجآت','عيد ميلاد'], available:true, images:[IMG('1563861826100-9cb868fdbe11')], isNew:false, views:134, waClicks:19, dateAdded:'2024-10-15' },
+  { id:'p9', name:'صندوق استقبال المولود', category:'صناديق هدايا', price:265, description:'احتفلي بقدوم الفرحة الصغيرة بصندوق مولود فاخر ومليء بالمستلزمات اللطيفة.', contents:['ملابس وليد قطنية','دمية ناعمة','شوكولاتة للأهل','بطاقة تهنئة','بطانية صغيرة'], colors:['أزرق فاتح','وردي فاتح','أبيض'], sizes:['متوسط','كبير'], occasions:['مولود جديد'], available:false, images:[IMG('1606787366850-de6330128bfc'),IMG('1549465220-1d8a927c7efd')], isNew:false, views:201, waClicks:34, dateAdded:'2024-10-01' },
+  { id:'p10', name:'طقم إكسسوارات التغليف الفاخر', category:'إكسسوارات', price:120, description:'طقم إكسسوارات تغليف احترافي لتزيين هداياك بأسلوبك الخاص.', contents:['شرائط حرير متنوعة','بيبر ورق تغليف','طوق ورد مجفف','ملصقات هدية','خيط شمعي ذهبي'], colors:['وردي','ذهبي','أبيض','بيج'], occasions:['الكل'], available:true, images:[IMG('1522337360788-8b13dee7a37e')], isNew:false, views:89, waClicks:12, dateAdded:'2024-09-15' },
+  { id:'p11', name:'صندوق عيد الحب الرومانسي', category:'صناديق هدايا', price:175, description:'قولي له/لها كل ما يختلج في قلبك بهذا الصندوق الرومانسي المميز.', contents:['قلب شوكولاتة بلجيكي','ورود حمراء','شمعة قلب','عطر صغير','رسالة حب مطرزة'], colors:['أحمر','وردي','أبيض'], occasions:['عيد الحب'], available:true, images:[IMG('1490750967868-88df5691cc2e'),IMG('1548907040-4baa42d10919')], isNew:true, views:378, waClicks:72, dateAdded:'2024-12-15', featured:true },
+  { id:'p12', name:'صندوق المفاجأة الكاملة', category:'طقم كامل', price:240, description:'لا تعرف ماذا تختار؟ دعينا نختار لك! صندوق مفاجأة بعناية متكاملة لكل المناسبات.', contents:['كوب فاخر','شوكولاتة مشكلة','عطر مصغر','شمعة','بطاقة تهنئة','شريط وتزيين'], colors:['وردي','ذهبي','بيج'], occasions:['مفاجآت','عيد ميلاد','تخرج'], available:true, images:[IMG('1549465220-1d8a927c7efd'),IMG('1606787366850-de6330128bfc')], isNew:false, views:223, waClicks:41, dateAdded:'2024-11-10' },
+];
+
+const defaultTestimonials = [
+  { id:'t1', name:'نورة المحمد', rating:5, comment:'صندوق الخطوبة كان خيالياً! الكل في العائلة انبهر بالتغليف والمحتوى. شكراً Anne Cup Box!', occasion:'خطوبة', avatar:IMG('1494790108377-be9c29b29330',100,100), date:'2024-11-28' },
+  { id:'t2', name:'ريم العنزي', rating:5, comment:'طلبت صندوق عيد ميلاد لصديقتي وكان أجمل من توقعاتي. الجودة ممتازة والتوصيل سريع.', occasion:'عيد ميلاد', avatar:IMG('1438761681033-6461ffad8d80',100,100), date:'2024-12-02' },
+  { id:'t3', name:'سارة الزهراني', rating:5, comment:'أفضل Gift Box جربته! الاهتمام بالتفاصيل يظهر في كل قطعة. تعاملي معكم مستمر إن شاء الله.', occasion:'عيد الأم', avatar:IMG('1544005313-94ddf0286df2',100,100), date:'2024-12-08' },
+  { id:'t4', name:'هند القحطاني', rating:5, comment:'صندوق المولود الجديد كان رائعاً! الجودة عالية والتغليف فاخر. أنصح الكل بـ Anne Cup Box.', occasion:'مولود جديد', avatar:IMG('1547425751-b7d342e4e0c5',100,100), date:'2024-12-12' },
+];
+
+const defaultGallery = [
+  { id:'g1', title:'صندوق خطوبة ذهبي', image:IMG('1606787366850-de6330128bfc',800,600), category:'خطوبة' },
+  { id:'g2', title:'تغليف عيد الميلاد', image:IMG('1549465220-1d8a927c7efd',800,600), category:'عيد ميلاد' },
+  { id:'g3', title:'طقم الورد الفاخر', image:IMG('1490750967868-88df5691cc2e',800,600), category:'هدايا' },
+  { id:'g4', title:'طقم أكواب مميز', image:IMG('1514228742587-6b1558fcca3d',800,600), category:'أكواب' },
+  { id:'g5', title:'صندوق عيد الحب', image:IMG('1548907040-4baa42d10919',800,600), category:'عيد الحب' },
+  { id:'g6', title:'تغليف إكسسوارات', image:IMG('1522337360788-8b13dee7a37e',800,600), category:'إكسسوارات' },
+  { id:'g7', title:'صندوق مولود جديد', image:IMG('1607344645866-009c320b63e0',800,600), category:'مولود جديد' },
+  { id:'g8', title:'تشكيلة شوكولاتة', image:IMG('1563861826100-9cb868fdbe11',800,600), category:'هدايا' },
+  { id:'g9', title:'صندوق تخرج ذهبي', image:IMG('1606787366850-de6330128bfc',800,600), category:'تخرج' },
+];
+
+// ============================================================
+// STATE
+// ============================================================
+function loadStorage() {
+  try { const r = localStorage.getItem(STORAGE_KEY); if(r) return JSON.parse(r); } catch{}
+  return null;
+}
+function saveStorage() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify({ products: state.products, gallery: state.gallery, testimonials: state.testimonials })); } catch{}
+}
+
+const stored = loadStorage();
+const state = {
+  currentPage: 'home',
+  selectedProductId: null,
+  selectedOccasion: null,
+  products: stored?.products ?? JSON.parse(JSON.stringify(defaultProducts)),
+  gallery: stored?.gallery ?? JSON.parse(JSON.stringify(defaultGallery)),
+  testimonials: stored?.testimonials ?? JSON.parse(JSON.stringify(defaultTestimonials)),
+  wishlist: (() => { try { return JSON.parse(localStorage.getItem('annecupbox_wishlist')||'[]'); } catch { return []; } })(),
+  isAdmin: localStorage.getItem('annecupbox_admin') === 'true',
+  // products page filters
+  search: '',
+  selectedCategory: '',
+  selectedOccasionFilter: '',
+  showAvailOnly: false,
+  sort: 'newest',
+  filterOpen: false,
+  // custom box
+  cbStep: 0,
+  cbConfig: { boxColor:'', wrapColor:'', cupType:'', recipientName:'', message:'', chocolate:'', accessories:[], budget:'' },
+  // gallery
+  galleryCategory: 'الكل',
+  // occasions
+  // admin
+  adminTab: 'products',
+  adminEditId: null,
+  adminDeleteId: null,
+  adminModalOccasions: [],
+  // review
+  revRating: 5,
+};
+
+function saveWishlist() { try { localStorage.setItem('annecupbox_wishlist', JSON.stringify(state.wishlist)); } catch{} }
+
+// ============================================================
+// NAVIGATION
+// ============================================================
+function navigate(page, productId, occasion) {
+  state.currentPage = page;
+  state.selectedProductId = productId || null;
+  state.selectedOccasion = occasion || null;
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const pg = document.getElementById('page-' + page);
+  if(pg) pg.classList.add('active');
+  // nav links
+  document.querySelectorAll('.nav-link').forEach(l => l.classList.toggle('active', l.dataset.page === page));
+  document.querySelectorAll('.mob-link').forEach(l => l.classList.toggle('active', l.dataset.mob === page));
+  // footer & wa for admin
+  const isAdmin = page === 'admin';
+  document.getElementById('footer').style.display = isAdmin ? 'none' : '';
+  document.getElementById('wa-float').style.display = isAdmin ? 'none' : '';
+  // render
+  window.scrollTo({ top:0, behavior:'smooth' });
+  renderPage(page);
+}
+
+function renderPage(page) {
+  switch(page) {
+    case 'home': renderHome(); break;
+    case 'products': renderProducts(); break;
+    case 'product-detail': renderProductDetail(); break;
+    case 'custom-box': renderCustomBox(); break;
+    case 'gallery': renderGallery(); break;
+    case 'occasions': renderOccasions(); break;
+    case 'wishlist': renderWishlist(); break;
+    case 'admin': renderAdmin(); break;
+  }
+}
+
+// ============================================================
+// WISHLIST
+// ============================================================
+function toggleWishlist(id) {
+  const idx = state.wishlist.indexOf(id);
+  if(idx > -1) state.wishlist.splice(idx, 1);
+  else state.wishlist.push(id);
+  saveWishlist();
+  updateWishlistBadge();
+}
+function updateWishlistBadge() {
+  const cnt = state.wishlist.length;
+  const badge = document.getElementById('wish-count');
+  const icon = document.getElementById('wish-icon');
+  badge.textContent = cnt;
+  badge.classList.toggle('hidden', cnt === 0);
+  icon.setAttribute('fill', cnt > 0 ? 'currentColor' : 'none');
+}
+
+// ============================================================
+// PRODUCT CARD HTML
+// ============================================================
+function productCardHTML(p) {
+  const isWished = state.wishlist.includes(p.id);
+  const waUrl = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(`مرحباً، أريد الاستفسار عن منتج: ${p.name} (${p.price} ريال)`)}`;
+  return `<div class="product-card" onclick="navigate('product-detail','${p.id}')">
+    <div class="pc-img-wrap">
+      <img src="${p.images[0]}" alt="${p.name}" loading="lazy"/>
+      <div class="pc-badges">
+        ${p.isNew ? '<span class="badge-new">جديد</span>' : ''}
+        ${!p.available ? '<span class="badge-out">نفد</span>' : ''}
+      </div>
+      <button class="pc-wish" onclick="event.stopPropagation();toggleWishlist('${p.id}');this.querySelector('svg').setAttribute('fill',state.wishlist.includes('${p.id}')?'currentColor':'none');updateWishlistBadge();if(state.currentPage==='wishlist')renderWishlist();" title="إضافة للأمنيات">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="${isWished?'currentColor':'none'}" stroke="${isWished?'currentColor':'#9ca3af'}" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+        </svg>
+      </button>
+    </div>
+    <div class="pc-info">
+      <div class="pc-name">${p.name}</div>
+      <div class="pc-tags">
+        <span class="pc-tag pc-tag-cat">${p.category}</span>
+        ${p.occasions[0] && p.occasions[0] !== 'الكل' ? `<span class="pc-tag pc-tag-occ">${p.occasions[0]}</span>` : ''}
+      </div>
+      <div class="pc-bottom">
+        <div class="pc-price">${p.price} <small>ريال</small></div>
+        <button class="pc-order ${p.available?'avail':'unavail'}" onclick="event.stopPropagation();${p.available?`incrementWAClick('${p.id}');window.open('${waUrl}','_blank')`:''}">
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          ${p.available ? 'اطلب' : 'نفد'}
+        </button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function incrementViews(id) { const p = state.products.find(x=>x.id===id); if(p) { p.views++; saveStorage(); } }
+function incrementWAClick(id) { const p = state.products.find(x=>x.id===id); if(p) { p.waClicks++; saveStorage(); } }
+
+// ============================================================
+// HOME
+// ============================================================
+const homeOccasions = [
+  { badge:'م', label:'عيد ميلاد', bg:'#fdf2f8', border:'#fbcfe8' },
+  { badge:'ت', label:'تخرج', bg:'#fefce8', border:'#fde047' },
+  { badge:'خ', label:'خطوبة', bg:'#faf5ff', border:'#e9d5ff' },
+  { badge:'ج', label:'مولود جديد', bg:'#eff6ff', border:'#bfdbfe' },
+  { badge:'أ', label:'عيد الأم', bg:'#fff1f2', border:'#fecdd3' },
+  { badge:'ح', label:'عيد الحب', bg:'#fff1f2', border:'#fda4af' },
+  { badge:'ف', label:'مفاجآت', bg:'#fffbeb', border:'#fde68a' },
+];
+
+function renderHome() {
+  // Occasions
+  const hocc = document.getElementById('home-occasions');
+  if(hocc) hocc.innerHTML = homeOccasions.map(o => `
+    <button class="occasion-card" style="background:${o.bg};border-color:${o.border}" onclick="navigate('occasions',undefined,'${o.label}')">
+      <span class="occasion-icon">${o.badge}</span>
+      <span class="occasion-lbl">${o.label}</span>
+    </button>`).join('');
+  // Featured
+  const fp = document.getElementById('featured-products');
+  if(fp) fp.innerHTML = state.products.filter(p=>p.featured).slice(0,4).map(productCardHTML).join('');
+  // New
+  const np = document.getElementById('new-products');
+  if(np) np.innerHTML = state.products.filter(p=>p.isNew).slice(0,4).map(productCardHTML).join('');
+  // Testimonials
+  const tl = document.getElementById('testimonials-list');
+  if(tl) tl.innerHTML = state.testimonials.map(t => `
+    <div class="testimonial-card">
+      <div class="stars">${'★'.repeat(t.rating)}</div>
+      <p class="testimonial-text">"${t.comment}"</p>
+      <div class="testimonial-author">
+        <img class="testimonial-avatar" src="${t.avatar}" alt="${t.name}" loading="lazy"/>
+        <div>
+          <div class="testimonial-name">${t.name}</div>
+          <div class="testimonial-occ">${t.occasion}</div>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function findGifts() {
+  const occ = document.getElementById('gf-occ').value;
+  const budgetVal = document.getElementById('gf-budget').value;
+  let results = state.products.filter(p=>p.available);
+  if(occ) results = results.filter(p=>p.occasions.includes(occ)||p.occasions.includes('الكل'));
+  if(budgetVal) {
+    if(budgetVal === 'Infinity') results = results.filter(p=>p.price > 300);
+    else results = results.filter(p=>p.price <= Number(budgetVal));
+  }
+  results = results.slice(0,4);
+  const el = document.getElementById('gift-results');
+  if(results.length === 0) {
+    el.innerHTML = '<p style="text-align:center;color:#9ca3af;padding:1rem">لم نجد منتجات مطابقة. جربي فلتراً مختلفاً!</p>';
+  } else {
+    el.innerHTML = `<p style="font-size:0.875rem;font-weight:700;color:#374151;margin-bottom:1rem">وجدنا ${results.length} اقتراح لكِ</p><div class="products-grid products-grid-2" style="gap:0.75rem">${results.map(productCardHTML).join('')}</div>`;
+  }
+}
+
+// ============================================================
+// PRODUCTS PAGE
+// ============================================================
+const categories = ['صناديق هدايا','أكواب','إكسسوارات','طقم كامل'];
+const occasions = ['عيد ميلاد','تخرج','خطوبة','مولود جديد','عيد الأم','عيد الحب','مفاجآت'];
+
+function renderProducts() {
+  // init filters from state
+  document.getElementById('search-input').value = state.search;
+  document.getElementById('sort-select').value = state.sort;
+  // chips
+  renderCatChips(); renderOccChips(); updateAvailToggle();
+  filterProducts();
+}
+
+function renderCatChips() {
+  const el = document.getElementById('cat-chips');
+  if(!el) return;
+  const all = [{label:'الكل',value:''},...categories.map(c=>({label:c,value:c}))];
+  el.innerHTML = all.map(c=>`<button class="filter-chip ${state.selectedCategory===c.value?'selected':'unselected'}" onclick="selectCat('${c.value}')">${c.label}</button>`).join('');
+}
+function renderOccChips() {
+  const el = document.getElementById('occ-chips');
+  if(!el) return;
+  const all = [{label:'الكل',value:''},...occasions.map(o=>({label:o,value:o}))];
+  el.innerHTML = all.map(o=>`<button class="filter-chip ${state.selectedOccasionFilter===o.value?'selected':'unselected'}" onclick="selectOcc('${o.value}')">${o.label}</button>`).join('');
+}
+function selectCat(v) { state.selectedCategory = v; renderCatChips(); filterProducts(); }
+function selectOcc(v) { state.selectedOccasionFilter = v; renderOccChips(); filterProducts(); }
+function updateAvailToggle() {
+  const tog = document.getElementById('toggle-avail');
+  const dot = document.getElementById('toggle-dot');
+  if(tog) { tog.style.background = state.showAvailOnly ? 'var(--brand)' : '#e5e7eb'; }
+  if(dot) { dot.style.left = state.showAvailOnly ? 'auto' : '4px'; dot.style.right = state.showAvailOnly ? '4px' : 'auto'; }
+}
+function toggleAvail() { state.showAvailOnly = !state.showAvailOnly; updateAvailToggle(); filterProducts(); }
+function toggleFilter() {
+  state.filterOpen = !state.filterOpen;
+  document.getElementById('filter-panel').classList.toggle('hidden', !state.filterOpen);
+  document.getElementById('filter-btn').classList.toggle('active', state.filterOpen);
+}
+function clearFilters() {
+  state.search=''; state.selectedCategory=''; state.selectedOccasionFilter=''; state.showAvailOnly=false; state.sort='newest';
+  document.getElementById('search-input').value='';
+  document.getElementById('sort-select').value='newest';
+  renderCatChips(); renderOccChips(); updateAvailToggle(); filterProducts();
+}
+
+function filterProducts() {
+  state.search = document.getElementById('search-input')?.value || '';
+  state.sort = document.getElementById('sort-select')?.value || 'newest';
+  let r = [...state.products];
+  if(state.search) r = r.filter(p=>p.name.includes(state.search)||p.description.includes(state.search));
+  if(state.selectedCategory) r = r.filter(p=>p.category===state.selectedCategory);
+  if(state.selectedOccasionFilter) r = r.filter(p=>p.occasions.includes(state.selectedOccasionFilter)||p.occasions.includes('الكل'));
+  if(state.showAvailOnly) r = r.filter(p=>p.available);
+  if(state.sort==='price-asc') r.sort((a,b)=>a.price-b.price);
+  else if(state.sort==='price-desc') r.sort((a,b)=>b.price-a.price);
+  else if(state.sort==='popular') r.sort((a,b)=>b.waClicks-a.waClicks);
+  else r.sort((a,b)=>new Date(b.dateAdded)-new Date(a.dateAdded));
+  const grid = document.getElementById('products-grid');
+  const cnt = document.getElementById('filtered-count');
+  const hasFilters = state.search||state.selectedCategory||state.selectedOccasionFilter||state.showAvailOnly;
+  document.getElementById('clear-filters-btn')?.classList.toggle('hidden', !hasFilters);
+  if(cnt) cnt.textContent = r.length;
+  if(grid) {
+    if(r.length===0) {
+      grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:5rem 1rem"><p style="color:#9ca3af;font-size:1.1rem;font-weight:500">لا توجد منتجات مطابقة</p><button onclick="clearFilters()" style="color:var(--brand);font-weight:700;margin-top:1rem">مسح الفلاتر</button></div>`;
+    } else {
+      grid.innerHTML = r.map(productCardHTML).join('');
+    }
+  }
+}
+
+// ============================================================
+// PRODUCT DETAIL
+// ============================================================
+let detailImgIdx = 0;
+
+function renderProductDetail() {
+  const p = state.products.find(x=>x.id===state.selectedProductId);
+  if(!p) { navigate('products'); return; }
+  incrementViews(p.id);
+  detailImgIdx = 0;
+  document.getElementById('detail-breadcrumb').textContent = p.name;
+  const isWished = state.wishlist.includes(p.id);
+  const waUrl = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(`مرحباً، أريد طلب: ${p.name}\nالسعر: ${p.price} ريال\nالرجاء التواصل معي للتأكيد.`)}`;
+  const content = document.getElementById('detail-content');
+  content.innerHTML = `
+    <div>
+      <div class="detail-main-img" id="detail-main-img">
+        <img src="${p.images[0]}" alt="${p.name}" id="detail-main-src"/>
+        ${!p.available ? '<div style="position:absolute;inset:0;background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;border-radius:1.5rem"><span style="background:#fff;color:#1f2937;font-weight:900;font-size:1.25rem;padding:0.75rem 1.5rem;border-radius:1rem">نفد المخزون</span></div>' : ''}
+        ${p.isNew ? '<span style="position:absolute;top:1rem;right:1rem;background:var(--brand);color:#fff;font-size:0.875rem;font-weight:700;padding:0.25rem 0.75rem;border-radius:9999px">جديد</span>' : ''}
+      </div>
+      ${p.images.length > 1 ? `<div class="detail-thumbs">${p.images.map((img,i) => `<button class="detail-thumb ${i===0?'active':''}" onclick="setDetailImg(${i},'${p.id}')"><img src="${img}" alt=""/></button>`).join('')}</div>` : ''}
+    </div>
+    <div>
+      <div class="detail-badges">
+        <span class="detail-badge detail-badge-cat">${p.category}</span>
+        ${p.occasions.filter(o=>o!=='الكل').map(o=>`<span class="detail-badge detail-badge-occ">${o}</span>`).join('')}
+      </div>
+      <h1 class="detail-name">${p.name}</h1>
+      <div class="detail-price">${p.price} <span>ريال سعودي</span></div>
+      <span class="avail-badge ${p.available?'avail-yes':'avail-no'}">
+        <span class="avail-dot"></span>${p.available?'متوفر':'نفد المخزون'}
+      </span>
+      <p class="detail-desc">${p.description}</p>
+      <div>
+        <h3 class="detail-section-title">محتويات الصندوق:</h3>
+        <ul class="contents-list">${p.contents.map(c=>`<li class="contents-item"><span class="contents-check">✓</span>${c}</li>`).join('')}</ul>
+      </div>
+      ${p.colors.length ? `<div><h3 class="detail-section-title" style="font-size:0.875rem">الألوان المتاحة:</h3><div class="color-chips">${p.colors.map(c=>`<span class="color-chip">${c}</span>`).join('')}</div></div>` : ''}
+      ${p.sizes?.length ? `<div style="margin-top:1rem"><h3 class="detail-section-title" style="font-size:0.875rem">المقاسات المتاحة:</h3><div class="size-chips">${p.sizes.map(s=>`<span class="size-chip">${s}</span>`).join('')}</div></div>` : ''}
+      <div class="detail-actions">
+        <a href="${waUrl}" target="_blank" onclick="incrementWAClick('${p.id}')" class="btn-wa-big ${p.available?'avail':'unavail'}">
+          <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          ${p.available ? 'اطلب عبر واتساب' : 'نفد المخزون'}
+        </a>
+        <div style="display:flex;gap:0.5rem">
+          <button id="wish-detail-btn" class="btn-wish-detail ${isWished?'wished':''}" onclick="toggleWishlistDetail('${p.id}')">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="${isWished?'currentColor':'none'}" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            <span id="wish-detail-txt">${isWished?'محفوظة':'حفظ'}</span>
+          </button>
+          <button class="btn-share-detail" onclick="shareProduct('${p.name}',${p.price})">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+          </button>
+        </div>
+      </div>
+      <p class="detail-meta">المشاهدات: ${p.views} · طلبات واتساب: ${p.waClicks}</p>
+    </div>`;
+
+  // Similar
+  const similar = state.products.filter(x=>x.id!==p.id&&(x.category===p.category||x.occasions.some(o=>p.occasions.includes(o)))).slice(0,4);
+  const sim = document.getElementById('similar-products');
+  if(similar.length && sim) {
+    sim.innerHTML = `<div style="margin-bottom:3rem"><h2 style="font-size:1.5rem;font-weight:900;color:#1f2937;margin-bottom:1.5rem">منتجات مشابهة</h2><div class="products-grid products-grid-2 products-grid-4">${similar.map(productCardHTML).join('')}</div></div>`;
+  } else if(sim) sim.innerHTML = '';
+  // Star rating
+  renderStarRating();
+}
+
+function setDetailImg(i, pid) {
+  detailImgIdx = i;
+  const p = state.products.find(x=>x.id===pid);
+  if(!p) return;
+  document.getElementById('detail-main-src').src = p.images[i];
+  document.querySelectorAll('.detail-thumb').forEach((t,j)=>t.classList.toggle('active',j===i));
+}
+
+function toggleWishlistDetail(id) {
+  toggleWishlist(id);
+  const isW = state.wishlist.includes(id);
+  const btn = document.getElementById('wish-detail-btn');
+  const txt = document.getElementById('wish-detail-txt');
+  if(btn) { btn.classList.toggle('wished',isW); btn.querySelector('svg').setAttribute('fill',isW?'currentColor':'none'); }
+  if(txt) txt.textContent = isW ? 'محفوظة' : 'حفظ';
+}
+
+function shareProduct(name, price) {
+  if(navigator.share) { navigator.share({ title:name, text:`${name} - ${price} ريال`, url:window.location.href }); }
+  else { navigator.clipboard.writeText(window.location.href).then(()=>alert('تم نسخ الرابط!')); }
+}
+
+function renderStarRating() {
+  const el = document.getElementById('star-rating');
+  if(!el) return;
+  el.innerHTML = [1,2,3,4,5].map(s=>`<button type="button" onclick="setRevRating(${s})" style="font-size:1.75rem;transition:transform 0.15s;color:${s<=state.revRating?'var(--gold)':'#d1d5db'}" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform=''">${s<=state.revRating?'★':'☆'}</button>`).join('')
+    + `<span style="font-size:0.875rem;color:#6b7280;margin-right:0.5rem;align-self:center">${['','ضعيف','مقبول','جيد','ممتاز','رائع'][state.revRating]}</span>`;
+}
+function setRevRating(r) { state.revRating = r; renderStarRating(); }
+
+function submitReview() {
+  const author = document.getElementById('rev-author').value.trim();
+  const email = document.getElementById('rev-email').value.trim();
+  const content = document.getElementById('rev-content').value.trim();
+  let valid = true;
+  ['rev-author-err','rev-email-err','rev-content-err'].forEach(id=>document.getElementById(id).classList.add('hidden'));
+  ['rev-author','rev-email','rev-content'].forEach(id=>document.getElementById(id).classList.remove('error'));
+  if(!author) { showErr('rev-author-err','الاسم مطلوب'); valid=false; }
+  if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showErr('rev-email-err','بريد غير صحيح'); valid=false; }
+  if(!content || content.length<10) { showErr('rev-content-err','اكتبي 10 أحرف على الأقل'); valid=false; }
+  if(!valid) return;
+  const btn = document.getElementById('rev-submit');
+  btn.disabled = true; btn.textContent = 'جاري الإرسال...';
+  setTimeout(()=>{
+    const wrap = document.getElementById('review-form-wrap');
+    wrap.innerHTML = `<div class="success-box"><div class="success-icon">✓</div><h3 style="font-size:1.25rem;font-weight:900;color:#1f2937;margin-bottom:0.5rem">شكراً على تقييمك!</h3><p style="color:#6b7280;margin-bottom:1rem">سيتم مراجعة تقييمك ونشره قريباً.</p><button onclick="resetReviewForm()" style="color:var(--brand);font-weight:700;font-size:0.875rem">إضافة تقييم آخر</button></div>`;
+  },1200);
+}
+function resetReviewForm() {
+  const wrap = document.getElementById('review-form-wrap');
+  wrap.innerHTML = '';// just re-render
+  renderProductDetail();
+}
+function showErr(id, msg) {
+  const el = document.getElementById(id);
+  if(el) { el.textContent=msg; el.classList.remove('hidden'); }
+  const inp = id.replace('-err','');
+  const inpEl = document.getElementById(inp);
+  if(inpEl) inpEl.classList.add('error');
+}
+
+// ============================================================
+// CUSTOM BOX
+// ============================================================
+const cbSteps = ['لون الصندوق','التغليف والكوب','الشوكولاتة والإكسسوارات','الرسالة والتفاصيل','المراجعة والإرسال'];
+const boxColors = [{label:'وردي فاتح',hex:'#F8C8DC'},{label:'وردي غامق',hex:'#E75480'},{label:'أبيض',hex:'#FFFFFF'},{label:'ذهبي',hex:'#D4AF37'},{label:'أسود',hex:'#1a1a1a'},{label:'بنفسجي',hex:'#9B59B6'}];
+const wrapColors = [{label:'ورقي ذهبي',hex:'#D4AF37'},{label:'حريري وردي',hex:'#E75480'},{label:'ماط أبيض',hex:'#F5F5F5'},{label:'شبكي رومانسي',hex:'#FFB6C1'}];
+const cupTypes = ['كوب سيراميك كلاسيك','كوب استانلس ذهبي','كوب زجاج شفاف','كوب مع غطاء وشفاطة','بدون كوب'];
+const chocOptions = ['شوكولاتة بلجيكية','شوكولاتة مع اسم','تشكيلة شوكولاتة','شوكولاتة داكنة','بدون شوكولاتة'];
+const accOptions = ['شمعة معطرة','باقة ورد مجفف','عطر مصغر','دمية صغيرة','ملعقة خشبية محفورة','إطار صورة صغير'];
+const budgets = ['أقل من 100 ريال','100 – 150 ريال','150 – 250 ريال','250 – 400 ريال','أكثر من 400 ريال'];
+
+function estimateCBPrice() {
+  let b=80;
+  if(state.cbConfig.cupType && state.cbConfig.cupType!=='بدون كوب') b+=40;
+  if(state.cbConfig.chocolate && state.cbConfig.chocolate!=='بدون شوكولاتة') b+=30;
+  b += state.cbConfig.accessories.length * 20;
+  if(state.cbConfig.recipientName) b+=15;
+  return b;
+}
+
+function renderCustomBox() {
+  renderCBStepsBar();
+  renderCBStepContent();
+  renderCBNav();
+  renderCBLivePrice();
+}
+
+function renderCBStepsBar() {
+  const el = document.getElementById('steps-bar');
+  if(!el) return;
+  el.innerHTML = cbSteps.map((s,i)=>{
+    const done = i < state.cbStep;
+    const cur = i === state.cbStep;
+    const lineClass = done ? 'done-line' : 'future-line';
+    return `<div class="step-item">
+      <button class="step-circle ${done?'done':cur?'current':'future'}" ${done?`onclick="state.cbStep=${i};renderCustomBox()"`:''}>
+        ${done?'✓':i+1}
+      </button>
+      <span class="step-label ${cur?'current-lbl':''}">${s}</span>
+      ${i<cbSteps.length-1?`<div class="step-line ${lineClass}"></div>`:''}
+    </div>`;
+  }).join('');
+}
+
+function renderCBStepContent() {
+  const el = document.getElementById('step-content');
+  if(!el) return;
+  const c = state.cbConfig;
+  if(state.cbStep===0) {
+    el.innerHTML = `<h2 style="font-size:1.25rem;font-weight:900;color:#1f2937;margin-bottom:1.5rem">اختاري لون الصندوق</h2>
+      <div class="color-grid">${boxColors.map(bc=>`<button class="color-option ${c.boxColor===bc.label?'selected':''}" onclick="state.cbConfig.boxColor='${bc.label}';renderCustomBox()">
+        <div class="color-swatch" style="background:${bc.hex};${bc.hex==='#FFFFFF'?'box-shadow:inset 0 0 0 1px #e5e7eb':''}"></div>
+        <span class="color-name">${bc.label}</span>
+        ${c.boxColor===bc.label?'<span style="color:var(--brand)">✓</span>':''}
+      </button>`).join('')}</div>`;
+  } else if(state.cbStep===1) {
+    el.innerHTML = `<div style="margin-bottom:2rem"><h2 style="font-size:1.25rem;font-weight:900;color:#1f2937;margin-bottom:1rem">لون التغليف</h2>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:0.75rem">${wrapColors.map(wc=>`<button class="color-option ${c.wrapColor===wc.label?'selected':''}" onclick="state.cbConfig.wrapColor='${wc.label}';renderCustomBox()">
+        <div class="color-swatch" style="background:${wc.hex}"></div>
+        <span class="color-name">${wc.label}</span>
+      </button>`).join('')}</div></div>
+    <div><h2 style="font-size:1.25rem;font-weight:900;color:#1f2937;margin-bottom:1rem">نوع الكوب</h2>
+      <div class="radio-list">${cupTypes.map(ct=>`<button class="radio-option ${c.cupType===ct?'selected':''}" onclick="state.cbConfig.cupType='${ct}';renderCustomBox()">${ct}</button>`).join('')}</div></div>`;
+  } else if(state.cbStep===2) {
+    el.innerHTML = `<div style="margin-bottom:2rem"><h2 style="font-size:1.25rem;font-weight:900;color:#1f2937;margin-bottom:1rem">الشوكولاتة</h2>
+      <div class="radio-list">${chocOptions.map(ch=>`<button class="radio-option ${c.chocolate===ch?'selected':''}" onclick="state.cbConfig.chocolate='${ch}';renderCustomBox()">${ch}</button>`).join('')}</div></div>
+    <div><h2 style="font-size:1.25rem;font-weight:900;color:#1f2937;margin-bottom:0.5rem">الإكسسوارات الإضافية</h2>
+      <p style="font-size:0.75rem;color:#9ca3af;margin-bottom:1rem">يمكنك اختيار أكثر من خيار (+20 ريال للعنصر)</p>
+      <div class="acc-grid">${accOptions.map(a=>{const sel=c.accessories.includes(a);return`<button class="acc-option ${sel?'selected':''}" onclick="toggleCBAcc('${a}')">${sel?'✓ ':''}${a}</button>`}).join('')}</div></div>`;
+  } else if(state.cbStep===3) {
+    el.innerHTML = `<h2 style="font-size:1.25rem;font-weight:900;color:#1f2937;margin-bottom:1.5rem">التخصيص والرسالة</h2>
+      <div style="margin-bottom:1rem"><label class="form-label">اسم المُهدى إليه (اختياري)</label><input class="custom-input" id="cb-recipient" value="${c.recipientName}" placeholder="مثال: نورة" oninput="state.cbConfig.recipientName=this.value;renderCBLivePrice()"/></div>
+      <div style="margin-bottom:1rem"><label class="form-label">رسالة الإهداء (اختياري)</label><textarea class="custom-input custom-textarea" id="cb-message" rows="3" placeholder="اكتبي رسالتك الخاصة هنا..." oninput="state.cbConfig.message=this.value">${c.message}</textarea></div>
+      <div><label class="form-label">الميزانية التقريبية</label>
+      <div class="budget-grid">${budgets.map(b=>`<button class="budget-opt ${c.budget===b?'selected':''}" onclick="state.cbConfig.budget='${b}';renderCBStepContent()">${b}</button>`).join('')}</div></div>`;
+  } else if(state.cbStep===4) {
+    const price = estimateCBPrice();
+    const rows = [['لون الصندوق',c.boxColor||'لم يُحدد'],['التغليف',c.wrapColor||'لم يُحدد'],['الكوب',c.cupType||'لم يُحدد'],['الشوكولاتة',c.chocolate||'لم يُحدد'],['الإضافات',c.accessories.length?c.accessories.join('، '):'لا شيء'],['الاسم',c.recipientName||'لم يُحدد'],['الرسالة',c.message||'لا توجد رسالة'],['الميزانية',c.budget||'لم تُحدد']];
+    el.innerHTML = `<h2 style="font-size:1.25rem;font-weight:900;color:#1f2937;margin-bottom:1.5rem">مراجعة طلبك</h2>
+      <div style="margin-bottom:1.5rem">${rows.map(([l,v])=>`<div class="review-row"><span class="review-label">${l}</span><span class="review-val">${v}</span></div>`).join('')}</div>
+      <div class="price-display"><div class="price-display-label">السعر التقريبي</div><div class="price-display-value">${price} <span style="font-size:1.1rem">ريال</span></div><p style="font-size:0.75rem;color:#6b7280;margin-top:0.5rem">* السعر النهائي يُحدد بعد التواصل</p></div>
+      <button onclick="sendCBOrder()" style="width:100%;background:var(--wa);color:#fff;font-weight:900;padding:1rem;border-radius:1rem;font-size:1.1rem;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:0.5rem">
+        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        أرسلي الطلب عبر واتساب
+      </button>`;
+  }
+}
+
+function toggleCBAcc(a) {
+  const idx = state.cbConfig.accessories.indexOf(a);
+  if(idx>-1) state.cbConfig.accessories.splice(idx,1);
+  else state.cbConfig.accessories.push(a);
+  renderCBStepContent(); renderCBLivePrice();
+}
+
+function renderCBNav() {
+  const el = document.getElementById('custom-nav');
+  if(!el) return;
+  el.innerHTML = `
+    ${state.cbStep>0?`<button class="btn-prev" onclick="state.cbStep--;renderCustomBox()">→ السابق</button>`:''}
+    ${state.cbStep<cbSteps.length-1?`<button class="btn-next" onclick="state.cbStep++;renderCustomBox()">التالي ←</button>`:''}`;
+}
+
+function renderCBLivePrice() {
+  const el = document.getElementById('live-price');
+  if(!el || state.cbStep>=4) { if(el) el.textContent=''; return; }
+  el.innerHTML = `<span style="color:#9ca3af">السعر التقريبي حتى الآن: </span><strong>${estimateCBPrice()} ريال</strong>`;
+}
+
+function sendCBOrder() {
+  const c = state.cbConfig;
+  const price = estimateCBPrice();
+  const lines = ['*طلب صندوق هدية مخصص - Anne Cup Box*','',`لون الصندوق: ${c.boxColor||'لم يُحدد'}`,`التغليف: ${c.wrapColor||'لم يُحدد'}`,`نوع الكوب: ${c.cupType||'لم يُحدد'}`,`الشوكولاتة: ${c.chocolate||'لم يُحدد'}`,c.accessories.length?`الإضافات: ${c.accessories.join('، ')}`:'',c.recipientName?`اسم المُهدى إليه: ${c.recipientName}`:'',c.message?`رسالة الإهداء: ${c.message}`:'',`الميزانية: ${c.budget||'لم تُحدد'}`,'',`السعر التقريبي: ${price} ريال`,'','الرجاء التواصل معي للتأكيد وإتمام الطلب.'].filter(Boolean).join('\n');
+  window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(lines)}`,'_blank');
+}
+
+// ============================================================
+// GALLERY
+// ============================================================
+const galleryCats = ['الكل','خطوبة','عيد ميلاد','هدايا','أكواب','عيد الحب','تخرج','مولود جديد','إكسسوارات'];
+
+function renderGallery() {
+  const cats = document.getElementById('gallery-cats');
+  if(cats) cats.innerHTML = galleryCats.map(c=>`<button class="gallery-cat ${state.galleryCategory===c?'active':'inactive'}" onclick="state.galleryCategory='${c}';renderGallery()">${c}</button>`).join('');
+  const items = state.galleryCategory==='الكل' ? state.gallery : state.gallery.filter(g=>g.category===state.galleryCategory);
+  const grid = document.getElementById('gallery-grid');
+  if(grid) {
+    if(items.length===0) {
+      grid.innerHTML = '<p style="text-align:center;color:#9ca3af;padding:3rem">لا توجد صور في هذا التصنيف</p>';
+    } else {
+      grid.innerHTML = items.map(item=>`<div class="gallery-item" onclick="openLightbox('${item.image}')">
+        <img src="${item.image}" alt="${item.title}" loading="lazy" style="aspect-ratio:${Math.random()>0.5?'4/5':'1'}"/>
+        <div class="gallery-overlay"><div class="gallery-overlay-text"><p class="gallery-title">${item.title}</p><span class="gallery-tag">${item.category}</span></div></div>
+      </div>`).join('');
+    }
+  }
+}
+
+function openLightbox(img) {
+  document.getElementById('lightbox-img').src = img;
+  document.getElementById('lightbox').classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.add('hidden');
+  document.body.style.overflow = '';
+}
+
+// ============================================================
+// OCCASIONS
+// ============================================================
+const occasionData = [
+  { icon:'م', label:'عيد ميلاد', description:'احتفلي بيومها المميز بأجمل هدية', color:'#db2777', bg:'#fdf2f8', border:'#fbcfe8' },
+  { icon:'ت', label:'تخرج', description:'هدية تليق بإنجازها الكبير', color:'#d97706', bg:'#fefce8', border:'#fde047' },
+  { icon:'خ', label:'خطوبة', description:'لحظة لا تُنسى تستحق هدية استثنائية', color:'#7c3aed', bg:'#faf5ff', border:'#e9d5ff' },
+  { icon:'ج', label:'مولود جديد', description:'رحباً بالقادم الجديد بأجمل هدية', color:'#2563eb', bg:'#eff6ff', border:'#bfdbfe' },
+  { icon:'أ', label:'عيد الأم', description:'أمي، الدنيا بدونك ناقصة', color:'#dc2626', bg:'#fff1f2', border:'#fecdd3' },
+  { icon:'ح', label:'عيد الحب', description:'قولي له ما يختلج في قلبك', color:'#e11d48', bg:'#fff1f2', border:'#fda4af' },
+  { icon:'ف', label:'مفاجآت', description:'لأن الهدية في أي وقت أجمل', color:'#d97706', bg:'#fffbeb', border:'#fde68a' },
+];
+
+function renderOccasions() {
+  const cards = document.getElementById('occ-cards');
+  if(cards) cards.innerHTML = occasionData.map(o=>`<button class="occ-card ${state.selectedOccasion===o.label?'selected':''}" style="background:${o.bg};border-color:${o.border}" onclick="state.selectedOccasion=state.selectedOccasion==='${o.label}'?null:'${o.label}';renderOccasions()">
+    <span class="occ-icon-big">${o.icon}</span>
+    <span class="occ-label" style="color:${o.color}">${o.label}</span>
+  </button>`).join('');
+  const prod = document.getElementById('occ-products');
+  if(!prod) return;
+  if(state.selectedOccasion) {
+    const occ = occasionData.find(o=>o.label===state.selectedOccasion);
+    const prods = state.products.filter(p=>p.occasions.includes(state.selectedOccasion)||p.occasions.includes('الكل')).slice(0,4);
+    prod.innerHTML = `<div style="margin-bottom:3rem">
+      <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.5rem">
+        <div style="width:48px;height:48px;background:${occ.bg};border:2px solid ${occ.border};border-radius:1rem;display:flex;align-items:center;justify-content:center;font-size:1.5rem">${occ.icon}</div>
+        <div>
+          <h2 style="font-size:1.5rem;font-weight:900;color:#1f2937">${occ.label}</h2>
+          <p style="color:#6b7280;font-size:0.875rem">${occ.description}</p>
+        </div>
+        <button onclick="state.selectedOccasionFilter='${state.selectedOccasion}';navigate('products')" style="margin-right:auto;color:var(--brand);font-size:0.875rem;font-weight:700">عرض الكل ←</button>
+      </div>
+      ${prods.length===0?'<p style="text-align:center;color:#9ca3af;padding:2rem">لا توجد منتجات لهذه المناسبة حالياً</p>':`<div class="products-grid products-grid-2 products-grid-4">${prods.map(productCardHTML).join('')}</div>`}
+    </div>`;
+  } else {
+    prod.innerHTML = occasionData.map(o=>{
+      const prods = state.products.filter(p=>p.occasions.includes(o.label)||p.occasions.includes('الكل')).slice(0,4);
+      if(!prods.length) return '';
+      return `<section style="margin-bottom:4rem">
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.5rem">
+          <div style="width:48px;height:48px;background:${o.bg};border:2px solid ${o.border};border-radius:1rem;display:flex;align-items:center;justify-content:center;font-size:1.5rem">${o.icon}</div>
+          <div><h2 style="font-size:1.25rem;font-weight:900;color:#1f2937">${o.label}</h2><p style="color:#9ca3af;font-size:0.875rem">${o.description}</p></div>
+          <button onclick="state.selectedOccasion='${o.label}';renderOccasions()" style="margin-right:auto;color:var(--brand);font-size:0.875rem;font-weight:700">عرض الكل ←</button>
+        </div>
+        <div class="products-grid products-grid-2 products-grid-4">${prods.map(productCardHTML).join('')}</div>
+      </section>`;
+    }).join('');
+  }
+}
+
+// ============================================================
+// WISHLIST
+// ============================================================
+function renderWishlist() {
+  const prods = state.products.filter(p=>state.wishlist.includes(p.id));
+  document.getElementById('wish-page-count').textContent = `${prods.length} منتج محفوظ`;
+  const cont = document.getElementById('wishlist-content');
+  if(!cont) return;
+  if(prods.length===0) {
+    cont.innerHTML = `<div class="wishlist-empty"><div class="wishlist-empty-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg></div><h2 style="font-size:1.5rem;font-weight:900;color:#1f2937;margin-bottom:0.5rem">قائمتك فارغة!</h2><p style="color:#6b7280;margin-bottom:2rem">احفظي المنتجات التي تعجبكِ بالنقر على أيقونة القلب</p><button onclick="navigate('products')" class="btn-primary">تصفحي المنتجات</button></div>`;
+    return;
+  }
+  const waMsg = encodeURIComponent(['*قائمة أمنياتي من Anne Cup Box*','', ...prods.map(p=>`• ${p.name} — ${p.price} ريال`),'','أريد الاستفسار عن هذه المنتجات.'].join('\n'));
+  const total = prods.reduce((s,p)=>s+p.price,0);
+  cont.innerHTML = `<div class="wishlist-wa-bar">
+    <div><p style="font-weight:900;color:#1f2937">أرسلي قائمتك كاملة</p><p style="font-size:0.875rem;color:#6b7280">اطلبي جميع المنتجات المحفوظة بضغطة واحدة</p></div>
+    <a href="https://wa.me/${WA_NUMBER}?text=${waMsg}" target="_blank" class="btn-wa" style="flex-shrink:0;padding:0.75rem 1.5rem;border-radius:0.75rem;font-size:0.875rem">
+      <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      اطلبي الكل عبر واتساب
+    </a>
+  </div>
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem">
+    <span style="font-size:0.875rem;color:#6b7280">يمكنكِ إزالة المنتجات بالنقر على القلب</span>
+    <button onclick="clearWishlist()" style="font-size:0.875rem;color:#f87171;font-weight:500">مسح الكل</button>
+  </div>
+  <div class="products-grid products-grid-2 products-grid-4">${prods.map(productCardHTML).join('')}</div>
+  <div class="wishlist-total">
+    <span class="total-label">إجمالي تقديري</span>
+    <span class="total-value">${total.toLocaleString('ar-SA')} ريال</span>
+  </div>`;
+}
+
+function clearWishlist() {
+  state.wishlist = [];
+  saveWishlist();
+  updateWishlistBadge();
+  renderWishlist();
+}
+
+// ============================================================
+// CONTACT FORM
+// ============================================================
+function submitContact() {
+  const name = document.getElementById('c-name').value.trim();
+  const phone = document.getElementById('c-phone').value.trim();
+  const email = document.getElementById('c-email').value.trim();
+  const message = document.getElementById('c-message').value.trim();
+  let valid = true;
+  ['c-name-err','c-phone-err','c-email-err','c-message-err'].forEach(id=>{const e=document.getElementById(id);if(e)e.classList.add('hidden');});
+  ['c-name','c-phone','c-email','c-message'].forEach(id=>{const e=document.getElementById(id);if(e)e.classList.remove('error');});
+  if(!name){showErr('c-name-err','الاسم مطلوب');valid=false;}
+  if(!phone||!/^[\d\s\+\-]{9,15}$/.test(phone)){showErr('c-phone-err','رقم جوال غير صحيح');valid=false;}
+  if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){showErr('c-email-err','بريد إلكتروني غير صحيح');valid=false;}
+  if(!message||message.length<10){showErr('c-message-err','الرسالة قصيرة جداً (10 أحرف على الأقل)');valid=false;}
+  if(!valid) return;
+  const btn=document.getElementById('c-submit');
+  btn.disabled=true;btn.textContent='جاري الإرسال...';
+  setTimeout(()=>{
+    document.getElementById('contact-form-wrap').innerHTML=`<div class="success-box"><div class="success-icon">✓</div><h3 style="font-size:1.25rem;font-weight:900;color:#1f2937;margin-bottom:0.5rem">تم الإرسال بنجاح!</h3><p style="color:#6b7280;margin-bottom:1rem">سنتواصل معكِ في أقرب وقت ممكن.</p><button onclick="resetContactForm()" style="color:var(--brand);font-weight:700;font-size:0.875rem">إرسال رسالة أخرى</button></div>`;
+  },1200);
+}
+function resetContactForm() { navigate('contact'); }
+
+// ============================================================
+// ADMIN
+// ============================================================
+function doAdminLogin() {
+  const pass = document.getElementById('admin-pass').value;
+  if(pass === ADMIN_PASSWORD) {
+    state.isAdmin = true;
+    localStorage.setItem('annecupbox_admin','true');
+    document.getElementById('admin-login-wrap').classList.add('hidden');
+    document.getElementById('admin-panel').classList.remove('hidden');
+    renderAdminPanel();
+  } else {
+    document.getElementById('admin-login-err').classList.remove('hidden');
+  }
+}
+function doAdminLogout() {
+  state.isAdmin = false;
+  localStorage.removeItem('annecupbox_admin');
+  navigate('home');
+}
+
+function renderAdmin() {
+  if(state.isAdmin) {
+    document.getElementById('admin-login-wrap').classList.add('hidden');
+    document.getElementById('admin-panel').classList.remove('hidden');
+    renderAdminPanel();
+  } else {
+    document.getElementById('admin-login-wrap').classList.remove('hidden');
+    document.getElementById('admin-panel').classList.add('hidden');
+  }
+}
+
+function renderAdminPanel() {
+  // Stats
+  const stats = document.getElementById('admin-stats');
+  if(stats) stats.innerHTML = [
+    {label:'المنتجات',value:state.products.length,bg:'background:var(--brand)',color:'color:#fff'},
+    {label:'المتوفر',value:state.products.filter(p=>p.available).length,bg:'background:#22c55e',color:'color:#fff'},
+    {label:'إجمالي المشاهدات',value:state.products.reduce((s,p)=>s+p.views,0),bg:'background:#3b82f6',color:'color:#fff'},
+    {label:'طلبات واتساب',value:state.products.reduce((s,p)=>s+p.waClicks,0),bg:'background:var(--wa)',color:'color:#fff'},
+  ].map(s=>`<div class="admin-stat" style="${s.bg};${s.color}"><div class="admin-stat-value">${s.value.toLocaleString('ar-SA')}</div><div class="admin-stat-label">${s.label}</div></div>`).join('');
+  // Tabs
+  const tabs = document.getElementById('admin-tabs');
+  if(tabs) tabs.innerHTML = [{key:'products',label:'المنتجات'},{key:'gallery',label:'المعرض'},{key:'testimonials',label:'التقييمات'}].map(t=>`<button class="admin-tab ${state.adminTab===t.key?'active':'inactive'}" onclick="state.adminTab='${t.key}';renderAdminTabContent()">${t.label}</button>`).join('');
+  renderAdminTabContent();
+}
+
+function renderAdminTabContent() {
+  const el = document.getElementById('admin-tab-content');
+  if(!el) return;
+  if(state.adminTab==='products') {
+    el.innerHTML = `<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem">
+      <h2 style="font-size:1.25rem;font-weight:900;color:#1f2937">إدارة المنتجات</h2>
+      <button onclick="openAdminModal(null)" style="background:var(--brand);color:#fff;font-weight:700;padding:0.5rem 1rem;border-radius:0.75rem;font-size:0.875rem">+ إضافة منتج</button>
+    </div>
+    <div style="background:#fff;border-radius:1rem;border:1px solid #e5e7eb;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.04)">
+      <div style="overflow-x:auto">
+      <table class="admin-table">
+        <thead><tr>${['المنتج','الفئة','السعر','الحالة','مشاهدات','واتساب',''].map(h=>`<th>${h}</th>`).join('')}</tr></thead>
+        <tbody>${state.products.map(p=>`<tr>
+          <td><div style="display:flex;align-items:center;gap:0.75rem"><img src="${p.images[0]}" style="width:40px;height:40px;border-radius:0.5rem;object-fit:cover"/><div><span style="font-weight:500;color:#1f2937">${p.name}</span><div style="display:flex;gap:0.25rem;margin-top:0.125rem">${p.isNew?'<span style="font-size:10px;background:var(--brand);color:#fff;padding:0 0.375rem;border-radius:9999px">جديد</span>':''}${p.featured?'<span style="font-size:10px;background:var(--gold);color:#fff;padding:0 0.375rem;border-radius:9999px">مميز</span>':''}</div></div></div></td>
+          <td style="color:#6b7280;font-size:0.75rem">${p.category}</td>
+          <td style="font-weight:700;color:var(--brand)">${p.price}</td>
+          <td><span style="font-size:0.75rem;font-weight:700;padding:0.25rem 0.5rem;border-radius:9999px;${p.available?'background:#dcfce7;color:#16a34a':'background:#fee2e2;color:#ef4444'}">${p.available?'متوفر':'نفد'}</span></td>
+          <td style="color:#6b7280">${p.views}</td>
+          <td style="color:#6b7280">${p.waClicks}</td>
+          <td><div style="display:flex;gap:0.5rem">
+            <button onclick="openAdminModal('${p.id}')" style="color:#3b82f6;font-weight:700;font-size:0.75rem;padding:0.25rem 0.5rem;background:#eff6ff;border-radius:0.5rem">تعديل</button>
+            <button onclick="openDeleteModal('${p.id}')" style="color:#ef4444;font-weight:700;font-size:0.75rem;padding:0.25rem 0.5rem;background:#fef2f2;border-radius:0.5rem">حذف</button>
+          </div></td>
+        </tr>`).join('')}</tbody>
+      </table></div></div>`;
+  } else if(state.adminTab==='gallery') {
+    el.innerHTML = `<h2 style="font-size:1.25rem;font-weight:900;color:#1f2937;margin-bottom:1rem">إدارة المعرض</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:1rem">${state.gallery.map(g=>`<div style="background:#fff;border-radius:1rem;overflow:hidden;border:1px solid #e5e7eb;box-shadow:0 1px 4px rgba(0,0,0,0.04)">
+      <img src="${g.image}" style="width:100%;aspect-ratio:1;object-fit:cover"/>
+      <div style="padding:0.75rem">
+        <p style="font-weight:700;color:#1f2937;font-size:0.875rem;margin-bottom:0.25rem">${g.title}</p>
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <span style="font-size:0.75rem;color:#9ca3af">${g.category}</span>
+          <button onclick="deleteGalleryItem('${g.id}')" style="color:#f87171;font-weight:700;font-size:0.75rem">حذف</button>
+        </div>
+      </div>
+    </div>`).join('')}</div>`;
+  } else if(state.adminTab==='testimonials') {
+    el.innerHTML = `<h2 style="font-size:1.25rem;font-weight:900;color:#1f2937;margin-bottom:1rem">إدارة التقييمات</h2>
+    <div style="display:flex;flex-direction:column;gap:0.75rem">${state.testimonials.map(t=>`<div style="background:#fff;border-radius:1rem;padding:1rem;border:1px solid #e5e7eb;display:flex;align-items:flex-start;gap:1rem">
+      <img src="${t.avatar}" style="width:48px;height:48px;border-radius:9999px;object-fit:cover;flex-shrink:0"/>
+      <div style="flex:1"><div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.25rem"><span style="font-weight:700;color:#1f2937">${t.name}</span><span style="font-size:0.75rem;background:var(--brand-light);color:var(--brand);padding:0.125rem 0.5rem;border-radius:9999px">${t.occasion}</span><span style="color:var(--gold);font-size:0.75rem">${'★'.repeat(t.rating)}</span></div><p style="font-size:0.875rem;color:#4b5563">${t.comment}</p></div>
+      <button onclick="deleteTestimonial('${t.id}')" style="color:#f87171;flex-shrink:0;font-size:0.875rem">حذف</button>
+    </div>`).join('')}</div>`;
+  }
+}
+
+function openAdminModal(productId) {
+  state.adminEditId = productId;
+  const modal = document.getElementById('admin-modal');
+  modal.classList.remove('hidden');
+  document.getElementById('modal-title').textContent = productId ? 'تعديل المنتج' : 'إضافة منتج جديد';
+  document.getElementById('modal-save').textContent = productId ? 'حفظ التعديلات' : 'إضافة المنتج';
+  const allOccs = ['عيد ميلاد','تخرج','خطوبة','مولود جديد','عيد الأم','عيد الحب','مفاجآت','الكل'];
+  if(productId) {
+    const p = state.products.find(x=>x.id===productId);
+    document.getElementById('m-name').value = p.name;
+    document.getElementById('m-price').value = p.price;
+    document.getElementById('m-cat').value = p.category;
+    document.getElementById('m-desc').value = p.description;
+    document.getElementById('m-contents').value = p.contents.join('\n');
+    document.getElementById('m-colors').value = p.colors.join('، ');
+    document.getElementById('m-sizes').value = p.sizes?.join('، ')||'';
+    document.getElementById('m-images').value = p.images.join('\n');
+    document.getElementById('m-available').checked = p.available;
+    document.getElementById('m-isnew').checked = p.isNew;
+    document.getElementById('m-featured').checked = p.featured||false;
+    state.adminModalOccasions = [...p.occasions];
+  } else {
+    document.getElementById('m-name').value=''; document.getElementById('m-price').value='';
+    document.getElementById('m-cat').value='صناديق هدايا'; document.getElementById('m-desc').value='';
+    document.getElementById('m-contents').value=''; document.getElementById('m-colors').value='';
+    document.getElementById('m-sizes').value=''; document.getElementById('m-images').value='';
+    document.getElementById('m-available').checked=true; document.getElementById('m-isnew').checked=false; document.getElementById('m-featured').checked=false;
+    state.adminModalOccasions = [];
+  }
+  renderModalOccChips();
+}
+
+function renderModalOccChips() {
+  const el = document.getElementById('m-occ-chips');
+  const allOccs = ['عيد ميلاد','تخرج','خطوبة','مولود جديد','عيد الأم','عيد الحب','مفاجآت','الكل'];
+  if(el) el.innerHTML = allOccs.map(o=>`<button type="button" class="occ-chip ${state.adminModalOccasions.includes(o)?'selected':'unselected'}" onclick="toggleModalOcc('${o}')">${o}</button>`).join('');
+}
+function toggleModalOcc(o) {
+  const idx = state.adminModalOccasions.indexOf(o);
+  if(idx>-1) state.adminModalOccasions.splice(idx,1); else state.adminModalOccasions.push(o);
+  renderModalOccChips();
+}
+
+function closeAdminModal() { document.getElementById('admin-modal').classList.add('hidden'); }
+
+function saveAdminProduct() {
+  const data = {
+    name: document.getElementById('m-name').value,
+    category: document.getElementById('m-cat').value,
+    price: Number(document.getElementById('m-price').value),
+    description: document.getElementById('m-desc').value,
+    contents: document.getElementById('m-contents').value.split('\n').filter(Boolean),
+    colors: document.getElementById('m-colors').value.split(/[,،]/).map(s=>s.trim()).filter(Boolean),
+    sizes: document.getElementById('m-sizes').value ? document.getElementById('m-sizes').value.split(/[,،]/).map(s=>s.trim()).filter(Boolean) : undefined,
+    occasions: state.adminModalOccasions.length ? state.adminModalOccasions : ['مفاجآت'],
+    available: document.getElementById('m-available').checked,
+    images: document.getElementById('m-images').value.split('\n').filter(Boolean),
+    isNew: document.getElementById('m-isnew').checked,
+    featured: document.getElementById('m-featured').checked,
+  };
+  if(state.adminEditId) {
+    const idx = state.products.findIndex(p=>p.id===state.adminEditId);
+    if(idx>-1) state.products[idx] = {...state.products[idx],...data};
+  } else {
+    state.products.unshift({...data,id:`p${Date.now()}`,views:0,waClicks:0,dateAdded:new Date().toISOString().split('T')[0]});
+  }
+  saveStorage();
+  closeAdminModal();
+  renderAdminPanel();
+}
+
+function openDeleteModal(id) {
+  state.adminDeleteId = id;
+  document.getElementById('delete-modal').classList.remove('hidden');
+  document.getElementById('confirm-delete-btn').onclick = () => {
+    state.products = state.products.filter(p=>p.id!==state.adminDeleteId);
+    saveStorage(); closeDeleteModal(); renderAdminPanel();
+  };
+}
+function closeDeleteModal() { document.getElementById('delete-modal').classList.add('hidden'); }
+
+function deleteGalleryItem(id) {
+  state.gallery = state.gallery.filter(g=>g.id!==id);
+  saveStorage(); renderAdminTabContent();
+}
+function deleteTestimonial(id) {
+  state.testimonials = state.testimonials.filter(t=>t.id!==id);
+  saveStorage(); renderAdminTabContent();
+}
+
+// ============================================================
+// MOBILE MENU
+// ============================================================
+let menuOpen = false;
+function toggleMenu() {
+  menuOpen = !menuOpen;
+  document.getElementById('mobile-menu').style.display = menuOpen ? 'block' : 'none';
+}
+function closeMenu() { menuOpen=false; document.getElementById('mobile-menu').style.display='none'; }
+
+// ============================================================
+// INIT
+// ============================================================
+document.getElementById('year').textContent = new Date().getFullYear();
+updateWishlistBadge();
+navigate('home');
+</script>
+</body>
+</html>
